@@ -1,4 +1,6 @@
 
+import { printInfo, printWarn } from './utils';
+
 //function getRndTup(n, a, b) {
 //  const res = [];
 //  for (let i = 0; i < n; i++) {
@@ -39,5 +41,19 @@ export function getLinspaceYLinspaceX(n, xMin, xMax, yMin, yMax) {
     y += sY;
   }
   return res;
+}
+
+export function permuteY(path, noise) {
+  const newPath = path.map(({ x, y }) => {
+    const rnd = (1.0-2*Math.random())*noise;
+    return ({
+      x,
+      y: y + rnd
+    });
+  });
+  //return newPath;
+  //printInfo('permute', path.length);
+  //return newPath;
+  return newPath;
 }
 

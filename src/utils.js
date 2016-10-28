@@ -1,6 +1,8 @@
 /*eslint-env browser*/
 
-export function print(...args) {
+const NARATIVE = 'narative';
+
+export function printInfo(...args) {
   let s = '';
   for (let i = 0; i < args.length; i++) {
     s = `${s} ${JSON.stringify(args[i])}`;
@@ -24,9 +26,16 @@ export function updateCanvas(width, height) {
   return ctx;
 }
 
-export function animloop(f) {
+function animloop(f) {
   f();
   setTimeout(() => {
     animloop(f);
   }, 1000/60);
 }
+
+export function play(s) {
+  const narativeDiv = document.getElementById(NARATIVE);
+  narativeDiv.innerHTML = s.narative;
+  animloop(s.scene);
+}
+
