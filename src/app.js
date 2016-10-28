@@ -5,6 +5,18 @@ import { printInfo, printWarn, updateCanvas, play } from './utils';
 import { getScene1, getScene2 } from './scenes';
 
 
+function nav(scenes) {
+  const hash = window.location.hash;
+  if (!hash) {
+    window.location.hash = '#1';
+  } else if (scenes[hash]) {
+    const s = scenes[hash];
+    play(s);
+  } else {
+    printWarn('No scene?');
+  }
+}
+
 function main() {
   printInfo('running main. yess');
   //const tempDiv = document.getElementById('temp');
@@ -18,7 +30,6 @@ function main() {
   //};
   //
 
-  //window.onhashchange = locationHashChanged;
 
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -29,15 +40,11 @@ function main() {
     '#2': getScene2(ctx, width, height)
   };
 
-  const hash = window.location.hash;
-  if (!hash) {
-    window.location.hash = '#1';
-  } else if (scenes[hash]) {
-    const s = scenes[hash];
-    play(s);
-  } else {
-    printWarn('No scene?');
-  }
+  nav(scenes);
+
+  window.onhashchange = () => {
+    nav(scenes);
+  };
 }
 
 main();
