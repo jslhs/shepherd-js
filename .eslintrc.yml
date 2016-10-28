@@ -4,7 +4,9 @@
     comma-dangle: [2, never]
     eol-last: [0]
     no-use-before-define: [2, {functions: false, classes: false}]
-    react/jsx-curly-spacing: [2, always]
-    react/prefer-stateless-function: 0
     space-before-function-paren: 0
     no-underscore-dangle: 0
+    spaced-comment: 0
+    no-plusplus: 0
+    space-infix-ops: 0
+    no-mixed-operators: 0
