@@ -25,9 +25,9 @@ function main() {
       narative: `<h2>Introduction</h2>
 
       <p>The following is a tiny guide to shepherding random numbers. It does
-      not deal with statistics or probablility, it is simply a few useful
-      tricks I've learnt for manipulating random numbers so that they behave in
-      a pleasing manner.</p>
+      not really deal with statistics or probablility, it is simply a few
+      useful tricks I've learnt for manipulating random numbers, so that they
+      behave in a pleasing manner.</p>
 
       <h2>Random Node</h2>
 
@@ -41,9 +41,9 @@ function main() {
       scene: scene.getSceneUniformMulti,
       narative: `<h2>Multiple</h2>
 
-      <p>It is always useful to see what happens when we introduce
-      more things. Here are multiple nodes that move in the same way as
-      before.</p>`,
+      <p>It is always useful to see what happens when we introduce more things.
+      Here are multiple nodes that move in the same way as before. Note that
+      all these nodes behave completely unrelated to one another</p>`,
       nav: {
         prev: 'single',
         next: 'multi-local'
@@ -57,7 +57,15 @@ function main() {
       their previous position&mdash;as if they have developed a simple kind of
       memory.</p>
 
-      <p>When ever a node reaches the edge of the canvas we stop it's motion.
+      <p>Sudenly it looks as if all the nodes are very nervous about
+      something.<p>
+
+      <p>When we look at this it can sometimes seem as if there is a pattern
+      emerging from the behaviour. But if you feel like you can see such a
+      pattern it is entirely coincidental since the nodes are completely
+      unaware of each other</p>
+
+      <p>Whenever a node reaches the edge of the canvas we stop it's motion.
       Until it should be inclined to start moving in the opposite
       direction.</p>`,
       nav: {

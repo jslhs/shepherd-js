@@ -122,10 +122,9 @@ export function getSceneUniformLocal(ctx, width, height) {
 
   const boundary = getBoundary(width, height);
 
-  const num = Math.floor(width / 10);
-  const dotSize = 3;
-
-  const noise = 1;
+  const num = Math.floor(width / 20);
+  const dotSize = 4;
+  const noise = 2;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
 
@@ -151,7 +150,6 @@ export function getSceneUniformVel(ctx, width, height) {
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
-
   const noise = 0.1;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
@@ -190,7 +188,6 @@ export function getSceneXVel(ctx, width, height) {
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
-
   const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
@@ -235,7 +232,6 @@ export function getSceneXVelHigh(ctx, width, height) {
 
   const num = Math.floor(width / 4);
   const dotSize = 3;
-
   const noise = 0.005;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
@@ -286,12 +282,10 @@ export function getSceneXVelExpose(ctx, width, height) {
 
   const num = Math.floor(width / 7);
   const dotSize = 3;
-
   const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
-
 
   function scene() {
     velocity = permute(velocity, noise);
