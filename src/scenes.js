@@ -16,7 +16,7 @@ const LINEWIDTH = 3;
 
 export function getScene1(ctx, width, height) {
   printInfo('making scene 1');
-  const narative = 'Here are some Nodes. But they have no <a href="#2">memory</a>';
+  const narative = 'Nodes oscillate randomly around the middle. | <a href="#2">Next</a>';
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -72,7 +72,7 @@ export function getScene1(ctx, width, height) {
 
 export function getScene2(ctx, width, height) {
   printInfo('making scene 2');
-  const narative = '';
+  const narative = '<a href="#1">Back</a> | Nodes oscillate randomly around their previous position. | <a href="#2">Next</a>';
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
