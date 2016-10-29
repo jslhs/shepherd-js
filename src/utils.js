@@ -67,10 +67,12 @@ function buildNarativeNav(nav) {
   let prev = '';
   let next = '';
   if (nav.prev) {
-    prev = `<a class="paginator prev" href="#${nav.prev}">Previous</a>`;
+    prev = `<a onclick="ga('send', 'event', 'link', 'click',
+    'prev');" class="paginator prev" href="#${nav.prev}">Previous</a>`;
   }
   if (nav.next) {
-    next = `<a class="paginator next" href="#${nav.next}">Next</a>`;
+    next = `<a  onclick="ga('send', 'event', 'link', 'click',
+    'next');" class="paginator next" href="#${nav.next}">Next</a>`;
   }
   return `${prev} ${next}`;
 }

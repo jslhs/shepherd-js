@@ -58,21 +58,15 @@ export function getSceneUniformSingle(ctx, width, height) {
       path2 = getRndYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMin, boundary.yMax);
     }
 
-    ctx.beginPath();
-    ctx.moveTo(boundary.xMin, path2[0].y);
-    ctx.lineTo(boundary.xMax, path2[0].y);
-    ctx.stroke();
-
     const path = [];
-    for (let i = 0; i < num; i++) {
-      const y1 = path1[i].y;
-      const y2 = path2[i].y;
-      path.push({
-        x: path1[i].x,
-        y: y1 + Math.sin((itt%frames)/frames * HPI)*(y2-y1)
-      });
-    }
-    drawDots(ctx, path, dotSize);
+    const y1 = path1[0].y;
+    const y2 = path2[0].y;
+    path.push({
+      x: path1[0].x,
+      y: y1 + Math.sin((itt%frames)/frames * HPI)*(y2-y1)
+    });
+    drawDots(ctx, path, dotSize, true);
+    drawDots(ctx, path2, dotSize, false);
   }
 
   return scene;
@@ -86,10 +80,9 @@ export function getSceneUniformMulti(ctx, width, height) {
 
   const boundary = getBoundary(width, height);
 
-  const num = Math.floor(width / 10);
-  const dotSize = 3;
-
-  const frames = 30;
+  const num = Math.floor(width / 20);
+  const dotSize = 4;
+  const frames = 60;
 
   let path1 = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let path2 = getRndYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMin, boundary.yMax);
@@ -115,7 +108,8 @@ export function getSceneUniformMulti(ctx, width, height) {
         y: y1 + Math.sin((itt%frames)/frames * HPI)*(y2-y1)
       });
     }
-    drawDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
+    drawDots(ctx, path2, dotSize, false);
   }
 
   return scene;
@@ -142,7 +136,7 @@ export function getSceneUniformLocal(ctx, width, height) {
 
     // TODO: limit
     path = permuteY(path, noise);
-    drawDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
   }
 
   return scene;
@@ -181,7 +175,7 @@ export function getSceneUniformVel(ctx, width, height) {
       ctx.stroke();
     });
 
-    drawDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
   }
 
   return scene;
@@ -226,7 +220,7 @@ export function getSceneXVel(ctx, width, height) {
       ctx.stroke();
     });
 
-    drawDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
   }
 
   return scene;
@@ -273,7 +267,7 @@ export function getSceneXVelHigh(ctx, width, height) {
       ctx.stroke();
     });
 
-    drawDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
   }
 
   return scene;
