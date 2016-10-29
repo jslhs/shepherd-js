@@ -11,9 +11,24 @@ const HPI = Math.PI * 0.5;
 const WHITE = 'rgba(255, 255, 255, 1.0)';
 const BLACK = 'rgba(0, 0, 0, 1.0)';
 const GRAY = 'rgba(0, 0, 0, 0.6)';
-const LIGHTGRAY = 'rgba(0, 0, 0, 0.1)';
+const LIGHTGRAY = 'rgba(0, 0, 0, 0.05)';
 const LINEWIDTH = 2;
 const THINLINEWIDTH = 1;
+
+function getBoundary(width, height) {
+  const edgeX = width*5/100;
+  const edgeTopY = height*20/100;
+  const edgeBottomY = height*0.01;
+
+  const xMin = edgeX;
+  const xMax = width - edgeX;
+  const yMin = edgeTopY;
+  const yMax = height - edgeBottomY;
+  const yMid = (yMax+yMin)*0.5;
+  return {
+    xMin, xMax, yMin, yMax, yMid
+  };
+}
 
 
 export function getScene1(ctx, width, height) {
@@ -24,22 +39,15 @@ export function getScene1(ctx, width, height) {
   ctx.fillStyle = GRAY;
   ctx.lineWidth = LINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
-
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
+  const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
 
   const frames = 30;
 
-  let path1 = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
-  let path2 = getRndYLinspaceX(num, xMin, xMax, yMin, yMax);
+  let path1 = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
+  let path2 = getRndYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMin, boundary.yMax);
   let itt = 0;
 
   function scene() {
@@ -50,7 +58,7 @@ export function getScene1(ctx, width, height) {
 
     if (itt%frames===0) {
       path1 = path2;
-      path2 = getRndYLinspaceX(num, xMin, xMax, yMin, yMax);
+      path2 = getRndYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMin, boundary.yMax);
     }
 
     const path = [];
@@ -80,21 +88,14 @@ export function getScene2(ctx, width, height) {
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
-
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
+  const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
 
   const noise = 1;
 
-  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let itt = 0;
 
   function scene() {
@@ -123,21 +124,14 @@ export function getScene3(ctx, width, height) {
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
-
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
+  const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
 
   const noise = 0.1;
 
-  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
   let itt = 0;
 
@@ -150,7 +144,7 @@ export function getScene3(ctx, width, height) {
     velocity = permute(velocity, noise);
     path = path.map(({ x, y }, i) => ({
       x,
-      y: limit(y + velocity[i], yMax, yMin)
+      y: limit(y + velocity[i], boundary.yMax, boundary.yMin)
     }));
 
     drawPathDots(ctx, path, dotSize);
@@ -171,21 +165,14 @@ export function getScene4(ctx, width, height) {
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
-
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
+  const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 10);
   const dotSize = 3;
 
   const noise = 0.1;
 
-  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
   let itt = 0;
 
@@ -201,7 +188,7 @@ export function getScene4(ctx, width, height) {
       s += velocity[i];
       return {
         x,
-        y: limit(y+s, yMax, yMin)
+        y: limit(y+s, boundary.yMax, boundary.yMin)
       };
     });
 
@@ -223,21 +210,14 @@ export function getScene5(ctx, width, height) {
   ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
-
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
+  const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 4);
   const dotSize = 3;
 
   const noise = 0.01;
 
-  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
   let itt = 0;
 
@@ -253,7 +233,7 @@ export function getScene5(ctx, width, height) {
       s += velocity[i];
       return {
         x,
-        y: limit(y+s, yMax, yMin)
+        y: limit(y+s, boundary.yMax, boundary.yMin)
       };
     });
 
@@ -275,21 +255,14 @@ export function getScene6(ctx, width, height) {
   ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
 
-  const edgeX = width*5/100;
-  const edgeY = height*20/100;
+  const boundary = getBoundary(width, height);
 
-  const xMin = edgeX;
-  const xMax = width - edgeX;
-  const yMin = edgeY;
-  const yMax = height - edgeY;
-  const yMid = (yMax+yMin)*0.5;
-
-  const num = Math.floor(width / 4);
+  const num = Math.floor(width / 7);
   const dotSize = 3;
 
   const noise = 0.01;
 
-  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
   let itt = 0;
 
@@ -308,7 +281,7 @@ export function getScene6(ctx, width, height) {
       s += velocity[i];
       return {
         x,
-        y: limit(y+s, yMax, yMin)
+        y: limit(y+s, boundary.yMax, boundary.yMin)
       };
     });
 

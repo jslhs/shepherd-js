@@ -2,7 +2,8 @@
 
 
 import { printInfo, printWarn, updateCanvas, play } from './utils';
-import { getScene1, getScene2, getScene3, getScene4, getScene5, getScene6 } from './scenes';
+import { getScene1, getScene2, getScene3, getScene4,
+  getScene5, getScene6 } from './scenes';
 
 
 function nav(scenes) {
