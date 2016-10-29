@@ -15,12 +15,30 @@ export function drawPath(ctx, p) {
 }
 
 export function drawPathDots(ctx, p, rad) {
+  const num = 1;
   for (let i = 1; i < p.length; i++) {
+    const x2 = p[i].x;
+    const y2 = p[i].y;
+    const x1 = p[i-1].x;
+    const y1 = p[i-1].y;
+    //const dx = (x2-x1)/num;
+    //const dy = (y2-y1)/num;
+    //let x = x1;
+    //let y = y1;
+    for (let k = 0; k < num; k++) {
+      ctx.beginPath();
+      //ctx.moveTo(x1 + Math.random()*dx, y1 + Math.random()*dy);
+      //ctx.lineTo(x2 - Math.random()*dx, y2 - Math.random()*dy);
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
     ctx.beginPath();
     ctx.arc(p[i].x, p[i].y, rad, 0, TWOPI);
     ctx.fill();
   }
-  drawPath(ctx, p);
+  //drawPath(ctx, p);
 }
 
 export function clear(ctx, width, height) {

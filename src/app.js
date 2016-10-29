@@ -30,7 +30,6 @@ function main() {
   //};
   //
 
-
   const width = window.innerWidth;
   const height = window.innerHeight;
   const ctx = updateCanvas(width, height);
@@ -43,6 +42,7 @@ function main() {
   nav(scenes);
 
   window.onhashchange = () => {
+    printInfo('hash change');
     nav(scenes);
   };
 }

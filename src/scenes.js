@@ -10,7 +10,7 @@ const HPI = Math.PI * 0.5;
 
 const WHITE = 'rgba(255, 255, 255, 1.0)';
 const BLACK = 'rgba(0, 0, 0, 1.0)';
-const GRAY = 'rgba(0, 0, 0, 0.4)';
+const GRAY = 'rgba(0, 0, 0, 0.6)';
 const LINEWIDTH = 3;
 
 
