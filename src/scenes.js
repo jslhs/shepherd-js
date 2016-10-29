@@ -38,10 +38,8 @@ export function getSceneUniformSingle(ctx, width, height) {
   ctx.lineWidth = LINEWIDTH;
 
   const boundary = getBoundary(width, height);
-
   const num = 1;
   const dotSize = 20;
-
   const frames = 30;
 
   let path1 = getLinspaceYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMid, boundary.yMid);
@@ -58,6 +56,11 @@ export function getSceneUniformSingle(ctx, width, height) {
       path1 = path2;
       path2 = getRndYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMin, boundary.yMax);
     }
+
+    ctx.beginPath();
+    ctx.moveTo(boundary.xMin, boundary.yMid);
+    ctx.lineTo(boundary.xMax, boundary.yMid);
+    ctx.stroke();
 
     const path = [];
     for (let i = 0; i < num; i++) {
