@@ -17,18 +17,14 @@ function nav(scenes) {
   }
 }
 
+window.onresize = () => {
+  printInfo('resize');
+  main();
+};
+
+
 function main() {
   printInfo('running main. yess');
-  //const tempDiv = document.getElementById('temp');
-  //tempDiv.innerHTML = Math.floor(temperatureDisplay) + '°C';
-
-  //window.onresize = function() {
-  //  const width = window.innerWidth;
-  //  const height = window.innerHeight;
-  //  printInfo('resize', width, height);
-  //  updateCanvas(testCanvas, width, height);
-  //};
-  //
 
   const width = window.innerWidth;
   const height = window.innerHeight;
