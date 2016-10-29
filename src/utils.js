@@ -75,10 +75,15 @@ function buildNarativeNav(nav) {
   return `${prev} ${next}`;
 }
 
+function buildNarative(scene) {
+  return `<h2>${scene.title}</h2> ${scene.narative}`;
+}
+
 function play(scene, f) {
   const narativeDiv = document.getElementById(NARATIVE);
-  narativeDiv.innerHTML = scene.narative;
   const narativeNavDiv = document.getElementById(NARATIVENAV);
+
+  narativeDiv.innerHTML = buildNarative(scene);
   narativeNavDiv.innerHTML = buildNarativeNav(scene.nav);
 
   if (window.sceneAnim) {

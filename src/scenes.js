@@ -1,6 +1,7 @@
 /*eslint-env browser*/
 
-import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit } from './array';
+import { getLinspaceYLinspaceX, getRndYLinspaceX,
+  permuteY, permute, getNs, limit } from './array';
 import { printInfo, printWarn } from './utils';
 import { drawDots, drawPath, drawPathDots, clear } from './draw';
 
@@ -18,8 +19,8 @@ const THINLINEWIDTH = 1;
 
 function getBoundary(width, height) {
   const edgeX = width*5/100;
-  const edgeTopY = height*0.01;
-  const edgeBottomY = height*0.01;
+  const edgeTopY = height*0.2;
+  const edgeBottomY = height*0.2;
 
   const xMin = edgeX;
   const xMax = width - edgeX;
@@ -114,7 +115,7 @@ export function getSceneUniformMulti(ctx, width, height) {
         y: y1 + Math.sin((itt%frames)/frames * HPI)*(y2-y1)
       });
     }
-    drawPathDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize);
   }
 
   return scene;
@@ -143,7 +144,7 @@ export function getSceneUniformLocal(ctx, width, height) {
 
     // TODO: limit
     path = permuteY(path, noise);
-    drawPathDots(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize);
   }
 
   return scene;
@@ -177,7 +178,14 @@ export function getSceneUniformVel(ctx, width, height) {
       y: limit(y + velocity[i], boundary.yMax, boundary.yMin)
     }));
 
-    drawPathDots(ctx, path, dotSize);
+    velocity.forEach((v, i) => {
+      ctx.beginPath();
+      ctx.moveTo(path[i].x, path[i].y);
+      ctx.lineTo(path[i].x, path[i].y + 20*velocity[i]);
+      ctx.stroke();
+    });
+
+    drawDots(ctx, path, dotSize);
   }
 
   return scene;
@@ -191,44 +199,6 @@ export function getSceneXVel(ctx, width, height) {
   const boundary = getBoundary(width, height);
 
   const num = Math.floor(width / 10);
-  const dotSize = 3;
-
-  const noise = 0.1;
-
-  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
-  let velocity = getNs(num, 0);
-  let itt = 0;
-
-  function scene() {
-    itt += 1;
-    ctx.fillStyle = WHITE;
-    clear(ctx, width, height);
-    ctx.fillStyle = GRAY;
-
-    velocity = permute(velocity, noise);
-    let s = 0;
-    path = path.map(({ x, y }, i) => {
-      s += velocity[i];
-      return {
-        x,
-        y: limit(y+s, boundary.yMax, boundary.yMin)
-      };
-    });
-
-    drawPathDots(ctx, path, dotSize);
-  }
-
-  return scene;
-}
-
-export function getSceneXVelHigh(ctx, width, height) {
-  ctx.strokeStyle = LINEWIDTH;
-  ctx.fillStyle = WHITE;
-  ctx.lineWidth = THINLINEWIDTH;
-
-  const boundary = getBoundary(width, height);
-
-  const num = Math.floor(width / 4);
   const dotSize = 3;
 
   const noise = 0.01;
@@ -253,7 +223,63 @@ export function getSceneXVelHigh(ctx, width, height) {
       };
     });
 
-    drawPath(ctx, path, dotSize);
+    s = 0;
+    velocity.forEach((v, i) => {
+      s += velocity[i];
+      ctx.beginPath();
+      ctx.moveTo(path[i].x, path[i].y);
+      ctx.lineTo(path[i].x, path[i].y + 30*s);
+      ctx.stroke();
+    });
+
+    drawDots(ctx, path, dotSize);
+  }
+
+  return scene;
+}
+
+export function getSceneXVelHigh(ctx, width, height) {
+  ctx.strokeStyle = LINEWIDTH;
+  ctx.fillStyle = WHITE;
+  ctx.lineWidth = THINLINEWIDTH;
+
+  const boundary = getBoundary(width, height);
+
+  const num = Math.floor(width / 4);
+  const dotSize = 3;
+
+  const noise = 0.005;
+
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
+  let velocity = getNs(num, 0);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    ctx.fillStyle = WHITE;
+    clear(ctx, width, height);
+    ctx.fillStyle = GRAY;
+
+    velocity = permute(velocity, noise);
+    let s = 0;
+    path = path.map(({ x, y }, i) => {
+      s += velocity[i];
+      return {
+        x,
+        y: limit(y+s, boundary.yMax, boundary.yMin)
+      };
+    });
+
+    s = 0;
+    velocity.forEach((v, i) => {
+      s += velocity[i];
+      ctx.beginPath();
+      ctx.moveTo(path[i].x, path[i].y);
+      ctx.lineTo(path[i].x, path[i].y + 40*s);
+      ctx.stroke();
+    });
+
+    drawDots(ctx, path, dotSize);
   }
 
   return scene;
