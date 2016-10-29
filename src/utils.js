@@ -58,13 +58,19 @@ export function updateCanvas(width, height) {
 }
 
 function animloop(f) {
+  window.sceneAnim = requestAnimationFrame(() => animloop(f));
   f();
-  requestAnimationFrame(() => animloop(f));
 }
 
 export function play(s) {
   const narativeDiv = document.getElementById(NARATIVE);
   narativeDiv.innerHTML = s.narative;
+
+  if (window.sceneAnim) {
+    // i regret nothing!
+    cancelAnimationFrame(window.sceneAnim);
+    window.sceneAnim = undefined;
+  }
   animloop(s.scene);
 }
 
