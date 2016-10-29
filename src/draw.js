@@ -14,6 +14,16 @@ export function drawPath(ctx, p) {
   ctx.stroke();
 }
 
+export function drawDots(ctx, p, rad) {
+  for (let i = 0; i < p.length; i++) {
+    const x = p[i].x;
+    const y = p[i].y;
+    ctx.beginPath();
+    ctx.arc(x, y, rad, 0, TWOPI);
+    ctx.fill();
+  }
+}
+
 export function drawPathDots(ctx, p, rad) {
   const num = 1;
   for (let i = 1; i < p.length; i++) {

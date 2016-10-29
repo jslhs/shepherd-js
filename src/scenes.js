@@ -2,7 +2,7 @@
 
 import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit} from './random';
 import { printInfo, printWarn } from './utils';
-import { drawPath, drawPathDots, clear } from './draw';
+import { drawDots, drawPath, drawPathDots, clear } from './draw';
 
 const PI = Math.PI;
 const TWOPI = Math.PI * 2.0;
@@ -26,15 +26,62 @@ function getBoundary(width, height) {
   const yMin = edgeTopY;
   const yMax = height - edgeBottomY;
   const yMid = (yMax+yMin)*0.5;
+  const xMid = (xMax+xMin)*0.5;
   return {
-    xMin, xMax, yMin, yMax, yMid
+    xMin, xMax, yMin, yMax, yMid, xMid
+  };
+}
+
+export function getSceneUniformSingle(ctx, width, height) {
+  const str = 'Here is a single Node that oscillate randomly around a center'; const narative = `${str} <a class="next" href="#multi-local">Next</a>`;
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = GRAY;
+  ctx.lineWidth = LINEWIDTH;
+
+  const boundary = getBoundary(width, height);
+
+  const num = 1;
+  const dotSize = 20;
+
+  const frames = 30;
+
+  let path1 = getLinspaceYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMid, boundary.yMid);
+  let path2 = getRndYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMin, boundary.yMax);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    ctx.fillStyle = WHITE;
+    clear(ctx, width, height);
+    ctx.fillStyle = GRAY;
+
+    if (itt%frames===0) {
+      path1 = path2;
+      path2 = getRndYLinspaceX(num, boundary.xMid, boundary.xMid, boundary.yMin, boundary.yMax);
+    }
+
+    const path = [];
+    for (let i = 0; i < num; i++) {
+      const y1 = path1[i].y;
+      const y2 = path2[i].y;
+      path.push({
+        x: path1[i].x,
+        y: y1 + Math.sin((itt%frames)/frames * HPI)*(y2-y1)
+      });
+    }
+    drawDots(ctx, path, dotSize);
+  }
+
+  return {
+    scene,
+    narative
   };
 }
 
 
-export function getScene1(ctx, width, height) {
-  printInfo('making scene 1');
-  const str = 'Nodes oscillate randomly around the middle'; const narative = `${str} <a class="next" href="#2">Next</a>`;
+export function getSceneUniformMulti(ctx, width, height) {
+  const str = 'Several nodes that oscillate in the same way.'; const narative = `${str} <a class="next" href="#multi-local">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -80,10 +127,9 @@ export function getScene1(ctx, width, height) {
   };
 }
 
-export function getScene2(ctx, width, height) {
-  printInfo('making scene 2');
+export function getSceneUniformLocal(ctx, width, height) {
   const str = 'Nodes oscillate randomly around their previous position.';
-  const narative = `<a class="prev" href="#1">Back</a> ${str} <a class="next" href="#3">Next</a>`;
+  const narative = `<a class="prev" href="#multi">Back</a> ${str} <a class="next" href="#multi-velocity">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -116,10 +162,9 @@ export function getScene2(ctx, width, height) {
   };
 }
 
-export function getScene3(ctx, width, height) {
-  printInfo('making scene 3');
+export function getSceneUniformVel(ctx, width, height) {
   const str = 'Nodes have a velocity. The velocity changes randomly with small increments.';
-  const narative = `<a class="prev" href="#2">Back</a> ${str} <a class="next" href="#4">Next</a>`;
+  const narative = `<a class="prev" href="#multi-local">Back</a> ${str} <a class="next" href="#multi-varying-velocity">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -157,10 +202,9 @@ export function getScene3(ctx, width, height) {
   };
 }
 
-export function getScene4(ctx, width, height) {
-  printInfo('making scene 4');
+export function getSceneXVel(ctx, width, height) {
   const str = 'The velocity changes more when a node is further to the right.';
-  const narative = `<a class="prev" href="#3">Back</a> ${str} <a class="next" href="#5">Next</a>`;
+  const narative = `<a class="prev" href="#multi-velocity">Back</a> ${str} <a class="next" href="#multi-varying-velocity-high">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -202,10 +246,9 @@ export function getScene4(ctx, width, height) {
   };
 }
 
-export function getScene5(ctx, width, height) {
-  printInfo('making scene 5');
+export function getSceneXVelHigh(ctx, width, height) {
   const str = 'Now we add more nodes.';
-  const narative = `<a class="prev" href="#4">Back</a> ${str} <a class="next" href="#6">Next</a>`;
+  const narative = `<a class="prev" href="#multi-varying-velocity">Back</a> ${str} <a class="next" href="#multi-varying-velocity-expose">Next</a>`;
 
   ctx.strokeStyle = LINEWIDTH;
   ctx.fillStyle = WHITE;
@@ -247,10 +290,9 @@ export function getScene5(ctx, width, height) {
   };
 }
 
-export function getScene6(ctx, width, height) {
-  printInfo('making scene 6');
+export function getSceneXVelExpose(ctx, width, height) {
   const str = 'Expose.';
-  const narative = `<a class="prev" href="#5">Back</a> ${str}`;
+  const narative = `<a class="prev" href="#multi-varying-velocity-high">Back</a> ${str}`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
