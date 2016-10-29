@@ -42,14 +42,14 @@ function main() {
   const story = {
     single: {
       scene: scene.getSceneUniformSingle,
-      narative: 'Here is a single Node that oscillate randomly around a center',
+      narative: '<p>Here is a single Node that oscillate randomly around a center</p>',
       nav: {
         next: 'multi'
       }
     },
     multi: {
       scene: scene.getSceneUniformMulti,
-      narative: 'Several nodes that oscillate in the same way.',
+      narative: '<p>Several nodes that oscillate in the same way.</p>',
       nav: {
         prev: 'single',
         next: 'multi-local'
@@ -57,7 +57,7 @@ function main() {
     },
     'multi-local': {
       scene: scene.getSceneUniformLocal,
-      narative: 'Nodes oscillate randomly around their previous position.',
+      narative: '<p>Nodes oscillate randomly around their previous position.</p>',
       nav: {
         prev: 'multi',
         next: 'multi-velocity'
@@ -65,7 +65,7 @@ function main() {
     },
     'multi-velocity': {
       scene: scene.getSceneUniformVel,
-      narative: 'Nodes have a velocity. The velocity changes randomly with small increments.',
+      narative: '<p>Nodes have a velocity. The velocity changes randomly with small increments.</p>',
       nav: {
         prev: 'multi-local',
         next: 'multi-varying-velocity'
@@ -73,7 +73,7 @@ function main() {
     },
     'multi-varying-velocity': {
       scene: scene.getSceneXVel,
-      narative: 'The velocity changes more when a node is further to the right.',
+      narative: '<p>The velocity changes more when a node is further to the right.<p>',
       nav: {
         prev: 'multi-velocity',
         next: 'multi-varying-velocity-high'
@@ -81,7 +81,7 @@ function main() {
     },
     'multi-varying-velocity-high': {
       scene: scene.getSceneXVelHigh,
-      narative: 'Now we add more nodes.',
+      narative: '<p>Now we add more nodes.</p>',
       nav: {
         prev: 'multi-varying-velocity',
         next: 'multi-varying-velocity-expose'
@@ -91,7 +91,7 @@ function main() {
       scene: scene.getSceneXVelExpose,
       narative: 'Expose.',
       nav: {
-        prev: 'multi-varying-velocity-high'
+        prev: '<p>multi-varying-velocity-high</p>'
       }
     }
   };

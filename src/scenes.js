@@ -58,8 +58,8 @@ export function getSceneUniformSingle(ctx, width, height) {
     }
 
     ctx.beginPath();
-    ctx.moveTo(boundary.xMin, boundary.yMid);
-    ctx.lineTo(boundary.xMax, boundary.yMid);
+    ctx.moveTo(boundary.xMin, path2[0].y);
+    ctx.lineTo(boundary.xMax, path2[0].y);
     ctx.stroke();
 
     const path = [];

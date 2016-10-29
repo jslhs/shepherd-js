@@ -45,6 +45,7 @@ body{
   padding: 0px;
   margin: 0px;
   font-family: 'Droid Sans', sans-serif;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
   -webkit-text-size-adjust: 100%;
   font-style: normal;
@@ -62,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.09rem;
   line-height: 1.5rem;
   margin-bottom: .5rem;
-  text-rendering: optimizeLegibility;
   text-transform: uppercase;
 }
 
@@ -81,15 +81,9 @@ h2 {
 #narative a.prev:before{
   content: '< ';
 }
-#narative a.prev:after{
-  content: '|';
-}
 
 #narative a.next:after{
   content: ' >';
-}
-#narative a.next:before{
-  content: '|';
 }
 
 a, a:active, a:visited{
@@ -139,13 +133,44 @@ a, a:active, a:visited{
   letter-spacing: 0.09rem;
   line-height: 3rem;
   margin-bottom: .5rem;
-  text-rendering: optimizeLegibility;
   text-transform: uppercase;
   margin-top: 20px;
-
 }
 
 .site-title a:before{
   content: '<';
+}
+
+#narative-nav, #narative{
+  float: left;
+  position: relative;
+  width: 100%;
+  margin: 1.5rem 0 0 0;
+}
+
+
+.next, .prev {
+  position: relative;
+  font-family: 'Open Sans Condensed', 'Droid Sans', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 2.0rem;
+  line-height: 2.5rem;
+  /*display: block;*/
+  padding-top: 10px;
+}
+
+.next{
+  float: right;
+  text-align: right;
+}
+
+.prev{
+  float: left;
+  text-align: left;
+}
+
+p {
+  margin: 0 0 1.5rem 0;
 }
 
