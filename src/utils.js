@@ -75,7 +75,7 @@ function buildNarativeNav(nav) {
   return `${prev} ${next}`;
 }
 
-export function play(scene, f) {
+function play(scene, f) {
   const narativeDiv = document.getElementById(NARATIVE);
   narativeDiv.innerHTML = scene.narative;
   const narativeNavDiv = document.getElementById(NARATIVENAV);
@@ -87,5 +87,27 @@ export function play(scene, f) {
     window.sceneAnim = undefined;
   }
   animloop(f);
+}
+
+export function doNav(story, ctx, width, height) {
+  const hash = window.location.hash.slice(1);
+  if (!hash) {
+    window.location.hash = '#single';
+  } else if (story[hash]) {
+    const s = story[hash];
+    const f = s.scene(ctx, width, height);
+    play(s, f);
+  } else {
+    printWarn('No scene?');
+    window.location.hash = '#single';
+  }
+}
+
+export function getCanvasSize() {
+  const width = Math.max(window.innerWidth, 320);
+  const height = Math.max(window.innerHeight*0.6, 500);
+  return {
+    width, height
+  };
 }
 

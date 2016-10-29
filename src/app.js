@@ -2,36 +2,15 @@
 
 
 import './sass/main.scss';
-import { printInfo, printWarn, updateCanvas, play } from './utils';
+import { printInfo, printWarn, updateCanvas,
+  doNav, getCanvasSize } from './utils';
 import * as scene from './scenes';
 
-
-function nav(story, ctx, width, height) {
-  const hash = window.location.hash.slice(1);
-  if (!hash) {
-    window.location.hash = '#single';
-  } else if (story[hash]) {
-    const s = story[hash];
-    const f = s.scene(ctx, width, height);
-    play(s, f);
-  } else {
-    printWarn('No scene?');
-    window.location.hash = '#single';
-  }
-}
 
 window.onresize = () => {
   printInfo('resize');
   main();
 };
-
-function getCanvasSize() {
-  const width = Math.max(window.innerWidth, 320);
-  const height = Math.max(window.innerHeight*0.6, 500);
-  return {
-    width, height
-  };
-}
 
 
 function main() {
@@ -97,11 +76,11 @@ function main() {
     }
   };
 
-  nav(story, ctx, cs.width, cs.height);
+  doNav(story, ctx, cs.width, cs.height);
 
   window.onhashchange = () => {
     printInfo('hash change');
-    nav(story, ctx, cs.width, cs.height);
+    doNav(story, ctx, cs.width, cs.height);
   };
 }
 
