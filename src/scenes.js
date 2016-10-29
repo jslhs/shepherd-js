@@ -1,6 +1,6 @@
 /*eslint-env browser*/
 
-import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY } from './random';
+import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs } from './random';
 import { printInfo, printWarn } from './utils';
 import { drawPath, drawPathDots, clear} from './draw';
 
@@ -72,7 +72,7 @@ export function getScene1(ctx, width, height) {
 
 export function getScene2(ctx, width, height) {
   printInfo('making scene 2');
-  const narative = '<a href="#1">Back</a> | Nodes oscillate randomly around their previous position. | <a href="#2">Next</a>';
+  const narative = '<a href="#1">Back</a> | Nodes oscillate randomly around their previous position. | <a href="#3">Next</a>';
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -112,3 +112,52 @@ export function getScene2(ctx, width, height) {
   };
 }
 
+export function getScene3(ctx, width, height) {
+  printInfo('making scene 3');
+  const narative = '<a href="#2">Back</a> | Nodes have a velocity. The velocity changes randomly with small increments | <a href="#4">Next</a>';
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = WHITE;
+  ctx.lineWidth = LINEWIDTH;
+
+  const edgeX = width*5/100;
+  const edgeY = height*20/100;
+
+  const xMin = edgeX;
+  const xMax = width - edgeX;
+  const yMin = edgeY;
+  const yMax = height - edgeY;
+  const yMid = (yMax+yMin)*0.5;
+
+  const num = Math.floor(width / 10);
+  const dotSize = 3;
+
+  const noise = 0.1;
+
+  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let velocity = getNs(num, 0);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    printInfo('scene2');
+    ctx.fillStyle = WHITE;
+    clear(ctx, width, height);
+    ctx.fillStyle = GRAY;
+
+    //printInfo(velocity)
+
+    velocity = permute(velocity, noise);
+    path = path.map(({ x, y }, i) => ({
+      x,
+      y: Math.max(Math.min(y + velocity[i], yMax), yMin)
+    }));
+
+    drawPathDots(ctx, path, dotSize);
+  }
+
+  return {
+    scene,
+    narative
+  };
+}

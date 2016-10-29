@@ -12,6 +12,23 @@ import { printInfo, printWarn } from './utils';
 //  return res;
 //}
 
+export function getNs(n, v) {
+  const res = [];
+  for (let i = 0; i < n; i++) {
+    res.push(v);
+  }
+  return res;
+}
+
+export function getRnd(n, min, max) {
+  const res = [];
+  for (let i = 0; i < n; i++) {
+    res.push(
+      min + (Math.random() * (max - min))
+    );
+  }
+  return res;
+}
 
 export function getRndYLinspaceX(n, xMin, xMax, yMin, yMax) {
   const res = [];
@@ -51,9 +68,13 @@ export function permuteY(path, noise) {
       y: y + rnd
     });
   });
-  //return newPath;
-  //printInfo('permute', path.length);
-  //return newPath;
   return newPath;
 }
 
+export function permute(arr, noise) {
+  const newArr = arr.map((v) => {
+    const rnd = (1.0-2*Math.random())*noise;
+    return v + rnd;
+  });
+  return newArr;
+}

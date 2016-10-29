@@ -2,7 +2,7 @@
 
 
 import { printInfo, printWarn, updateCanvas, play } from './utils';
-import { getScene1, getScene2 } from './scenes';
+import { getScene1, getScene2, getScene3 } from './scenes';
 
 
 function nav(scenes) {
@@ -32,7 +32,8 @@ function main() {
 
   const scenes = {
     '#1': getScene1(ctx, width, height),
-    '#2': getScene2(ctx, width, height)
+    '#2': getScene2(ctx, width, height),
+    '#3': getScene3(ctx, width, height)
   };
 
   nav(scenes);
