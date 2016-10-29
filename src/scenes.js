@@ -33,11 +33,6 @@ function getBoundary(width, height) {
 }
 
 export function getSceneUniformSingle(ctx, width, height) {
-  const narativeStr = 'Here is a single Node that oscillate randomly around a center';
-  const narativeNav = {
-    next: 'multi'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
   ctx.lineWidth = LINEWIDTH;
@@ -76,21 +71,11 @@ export function getSceneUniformSingle(ctx, width, height) {
     drawDots(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 
 export function getSceneUniformMulti(ctx, width, height) {
-  const narativeStr = 'Several nodes that oscillate in the same way.';
-  const narativeNav = {
-    prev: 'single',
-    next: 'multi-local'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
   ctx.lineWidth = LINEWIDTH;
@@ -129,20 +114,10 @@ export function getSceneUniformMulti(ctx, width, height) {
     drawPathDots(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 export function getSceneUniformLocal(ctx, width, height) {
-  const narativeStr = 'Nodes oscillate randomly around their previous position.';
-  const narativeNav = {
-    prev: 'multi',
-    next: 'multi-velocity'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
@@ -168,20 +143,10 @@ export function getSceneUniformLocal(ctx, width, height) {
     drawPathDots(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 export function getSceneUniformVel(ctx, width, height) {
-  const narativeStr = 'Nodes have a velocity. The velocity changes randomly with small increments.';
-  const narativeNav = {
-    prev: 'multi-local',
-    next: 'multi-varying-velocity'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
@@ -212,20 +177,10 @@ export function getSceneUniformVel(ctx, width, height) {
     drawPathDots(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 export function getSceneXVel(ctx, width, height) {
-  const narativeStr = 'The velocity changes more when a node is further to the right.';
-  const narativeNav = {
-    prev: 'multi-velocity',
-    next: 'multi-varying-velocity-high'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = LINEWIDTH;
@@ -260,20 +215,10 @@ export function getSceneXVel(ctx, width, height) {
     drawPathDots(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 export function getSceneXVelHigh(ctx, width, height) {
-  const narativeStr = 'Now we add more nodes.';
-  const narativeNav = {
-    prev: 'multi-varying-velocity',
-    next: 'multi-varying-velocity-expose'
-  };
-
   ctx.strokeStyle = LINEWIDTH;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
@@ -308,19 +253,10 @@ export function getSceneXVelHigh(ctx, width, height) {
     drawPath(ctx, path, dotSize);
   }
 
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }
 
 export function getSceneXVelExpose(ctx, width, height) {
-  const narativeStr = 'Expose.';
-  const narativeNav = {
-    prev: 'multi-varying-velocity-high'
-  };
-
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
@@ -357,10 +293,5 @@ export function getSceneXVelExpose(ctx, width, height) {
 
     drawPath(ctx, path, dotSize);
   }
-
-  return {
-    scene,
-    narativeStr,
-    narativeNav
-  };
+  return scene;
 }

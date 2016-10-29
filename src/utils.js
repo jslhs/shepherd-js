@@ -51,7 +51,7 @@ export function printWarn(...args) {
 }
 
 export function updateCanvas(width, height) {
-  const canvasStr = `<canvas width="${width}" height="${height-40}" id="drawing"></canvas>`;
+  const canvasStr = `<canvas width="${width}" height="${height}" id="drawing"></canvas>`;
   document.getElementById('box').innerHTML = canvasStr;
   const canvas = document.getElementById('drawing');
   const ctx = canvas.getContext('2d');
@@ -72,22 +72,20 @@ function buildNarativeNav(nav) {
   if (nav.next) {
     next = `<span><a href="#${nav.next}">Next</span>`;
   }
-
   return `${prev} ${next}`;
 }
 
-export function play(s) {
-  //printInfo(s);
+export function play(scene, f) {
   const narativeDiv = document.getElementById(NARATIVE);
-  narativeDiv.innerHTML = s.narativeStr;
+  narativeDiv.innerHTML = scene.narative;
   const narativeNavDiv = document.getElementById(NARATIVENAV);
-  narativeNavDiv.innerHTML = buildNarativeNav(s.narativeNav);
+  narativeNavDiv.innerHTML = buildNarativeNav(scene.nav);
 
   if (window.sceneAnim) {
     // i regret nothing!
     cancelAnimationFrame(window.sceneAnim);
     window.sceneAnim = undefined;
   }
-  animloop(s.scene);
+  animloop(f);
 }
 
