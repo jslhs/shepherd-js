@@ -1,6 +1,7 @@
 /*eslint-env browser*/
 
 const NARATIVE = 'narative';
+const NARATIVENAV = 'narative-nav';
 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
@@ -62,10 +63,25 @@ function animloop(f) {
   f();
 }
 
+function buildNarativeNav(nav) {
+  let prev = '';
+  let next = '';
+  if (nav.prev) {
+    prev = `<span><a href="#${nav.prev}">Previous</span>`;
+  }
+  if (nav.next) {
+    next = `<span><a href="#${nav.next}">Next</span>`;
+  }
+
+  return `${prev} ${next}`;
+}
+
 export function play(s) {
-  printInfo(s)
+  //printInfo(s);
   const narativeDiv = document.getElementById(NARATIVE);
-  narativeDiv.innerHTML = s.narative;
+  narativeDiv.innerHTML = s.narativeStr;
+  const narativeNavDiv = document.getElementById(NARATIVENAV);
+  narativeNavDiv.innerHTML = buildNarativeNav(s.narativeNav);
 
   if (window.sceneAnim) {
     // i regret nothing!

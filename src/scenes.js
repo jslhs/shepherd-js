@@ -18,7 +18,7 @@ const THINLINEWIDTH = 1;
 
 function getBoundary(width, height) {
   const edgeX = width*5/100;
-  const edgeTopY = height*20/100;
+  const edgeTopY = height*0.01;
   const edgeBottomY = height*0.01;
 
   const xMin = edgeX;
@@ -33,7 +33,10 @@ function getBoundary(width, height) {
 }
 
 export function getSceneUniformSingle(ctx, width, height) {
-  const str = 'Here is a single Node that oscillate randomly around a center'; const narative = `${str} <a class="next" href="#multi-local">Next</a>`;
+  const narativeStr = 'Here is a single Node that oscillate randomly around a center';
+  const narativeNav = {
+    next: 'multi'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -75,13 +78,18 @@ export function getSceneUniformSingle(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 
 export function getSceneUniformMulti(ctx, width, height) {
-  const str = 'Several nodes that oscillate in the same way.'; const narative = `${str} <a class="next" href="#multi-local">Next</a>`;
+  const narativeStr = 'Several nodes that oscillate in the same way.';
+  const narativeNav = {
+    prev: 'single',
+    next: 'multi-local'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -123,13 +131,17 @@ export function getSceneUniformMulti(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 export function getSceneUniformLocal(ctx, width, height) {
-  const str = 'Nodes oscillate randomly around their previous position.';
-  const narative = `<a class="prev" href="#multi">Back</a> ${str} <a class="next" href="#multi-velocity">Next</a>`;
+  const narativeStr = 'Nodes oscillate randomly around their previous position.';
+  const narativeNav = {
+    prev: 'multi',
+    next: 'multi-velocity'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -158,13 +170,17 @@ export function getSceneUniformLocal(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 export function getSceneUniformVel(ctx, width, height) {
-  const str = 'Nodes have a velocity. The velocity changes randomly with small increments.';
-  const narative = `<a class="prev" href="#multi-local">Back</a> ${str} <a class="next" href="#multi-varying-velocity">Next</a>`;
+  const narativeStr = 'Nodes have a velocity. The velocity changes randomly with small increments.';
+  const narativeNav = {
+    prev: 'multi-local',
+    next: 'multi-varying-velocity'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -198,13 +214,17 @@ export function getSceneUniformVel(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 export function getSceneXVel(ctx, width, height) {
-  const str = 'The velocity changes more when a node is further to the right.';
-  const narative = `<a class="prev" href="#multi-velocity">Back</a> ${str} <a class="next" href="#multi-varying-velocity-high">Next</a>`;
+  const narativeStr = 'The velocity changes more when a node is further to the right.';
+  const narativeNav = {
+    prev: 'multi-velocity',
+    next: 'multi-varying-velocity-high'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -242,13 +262,17 @@ export function getSceneXVel(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 export function getSceneXVelHigh(ctx, width, height) {
-  const str = 'Now we add more nodes.';
-  const narative = `<a class="prev" href="#multi-varying-velocity">Back</a> ${str} <a class="next" href="#multi-varying-velocity-expose">Next</a>`;
+  const narativeStr = 'Now we add more nodes.';
+  const narativeNav = {
+    prev: 'multi-varying-velocity',
+    next: 'multi-varying-velocity-expose'
+  };
 
   ctx.strokeStyle = LINEWIDTH;
   ctx.fillStyle = WHITE;
@@ -286,13 +310,16 @@ export function getSceneXVelHigh(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }
 
 export function getSceneXVelExpose(ctx, width, height) {
-  const str = 'Expose.';
-  const narative = `<a class="prev" href="#multi-varying-velocity-high">Back</a> ${str}`;
+  const narativeStr = 'Expose.';
+  const narativeNav = {
+    prev: 'multi-varying-velocity-high'
+  };
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -333,6 +360,7 @@ export function getSceneXVelExpose(ctx, width, height) {
 
   return {
     scene,
-    narative
+    narativeStr,
+    narativeNav
   };
 }

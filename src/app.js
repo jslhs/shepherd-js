@@ -23,13 +23,20 @@ window.onresize = () => {
   main();
 };
 
+function getCanvasSize() {
+  const width = Math.max(window.innerWidth, 320);
+  const height = Math.max(window.innerHeight*0.8, 500);
+  return {
+    width, height
+  };
+}
+
 
 function main() {
   printInfo('running main. yess');
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const ctx = updateCanvas(width, height);
+  const cs = getCanvasSize();
+  const ctx = updateCanvas(cs.width, cs.height);
 
   const scenes = {
     '#single': scene.getSceneUniformSingle,
@@ -41,11 +48,11 @@ function main() {
     '#multi-varying-velocity-expose': scene.getSceneXVelExpose
   };
 
-  nav(scenes, ctx, width, height);
+  nav(scenes, ctx, cs.width, cs.height);
 
   window.onhashchange = () => {
     printInfo('hash change');
-    nav(scenes, ctx, width, height);
+    nav(scenes, ctx, cs.width, cs.height);
   };
 }
 

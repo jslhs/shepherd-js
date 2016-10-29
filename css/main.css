@@ -41,6 +41,9 @@ html{
   color: #222;
 }
 
+/*$serif-font: 'Droid Serif', serif;*/
+/*$sans-font: 'Droid Sans', sans-serif;*/
+
 body{
   padding: 0px;
   margin: 0px;
@@ -58,15 +61,16 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans Condensed', 'Droid Sans', sans-serif;
+  text-transform: uppercase;
   line-height: 30px;
-  font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   -webkit-text-size-adjust: 100%;
 }
-/*h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }*/
-/*h1,.h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}*/
-/*h2,.h2 { font-size: 35px; line-height: 40px; margin-bottom: 10px; }*/
-/*h3,.h3 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }*/
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+h1,.h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
+h2,.h2 { font-size: 35px; line-height: 40px; margin-bottom: 10px; }
+h3,.h3 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
 
 #narative a.prev:before{
   content: '< ';
@@ -89,16 +93,19 @@ a, a:active, a:visited{
 
 
 #container{
+  /*background-color: red;*/
   width: 100%;
   height: 100%;
 }
 
 #content {
+  /*background-color:blue;*/
   height: 100vh;
   width: 100%;
+  min-width: 320px;
   position: relative;
   margin: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 #drawing{
@@ -108,30 +115,31 @@ a, a:active, a:visited{
   height: 100%;
 }
 
-#narative{
-  font-size: 1.5rem;
-  line-height: 2rem;
-  position: absolute;
+.text{
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  position: relative;
   width: 100%;
-  text-align: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  /*bottom: -50px;*/
-  top: 10px;
-  height: 50px;
+  min-width: 320px;
+  max-width: 600px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 20px;
+  min-height: 50px;
 }
 
-#foot{
-  font-size: 1rem;
-  line-height: 1rem;
-  background-color: #fff;
-  opacity:  0.5;
-  position: absolute;
-  width: 300px;
-  text-align: center;
-  bottom: 8px;
-  right: 8px;
-  height: 20px;
-  text-align: right;
-}
+/*#foot{*/
+/*  font-size: 1rem;*/
+/*  line-height: 1rem;*/
+/*  background-color: #fff;*/
+/*  opacity:  0.5;*/
+/*  position: absolute;*/
+/*  width: 300px;*/
+/*  text-align: center;*/
+/*  bottom: 8px;*/
+/*  right: 8px;*/
+/*  height: 20px;*/
+/*  text-align: right;*/
+/*}*/
 
