@@ -1,6 +1,6 @@
 /*eslint-env browser*/
 
-import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit} from './random';
+import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit } from './array';
 import { printInfo, printWarn } from './utils';
 import { drawDots, drawPath, drawPathDots, clear } from './draw';
 
