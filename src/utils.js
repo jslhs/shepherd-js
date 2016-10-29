@@ -50,7 +50,7 @@ export function printWarn(...args) {
 }
 
 export function updateCanvas(width, height) {
-  const canvasStr = `<canvas width="${width}" height="${height}" id="drawing"></canvas>`;
+  const canvasStr = `<canvas width="${width}" height="${height-40}" id="drawing"></canvas>`;
   document.getElementById('box').innerHTML = canvasStr;
   const canvas = document.getElementById('drawing');
   const ctx = canvas.getContext('2d');

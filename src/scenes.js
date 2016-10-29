@@ -2,7 +2,7 @@
 
 import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit} from './random';
 import { printInfo, printWarn } from './utils';
-import { drawPath, drawPathDots, clear} from './draw';
+import { drawPath, drawPathDots, clear } from './draw';
 
 const PI = Math.PI;
 const TWOPI = Math.PI * 2.0;
@@ -12,6 +12,7 @@ const WHITE = 'rgba(255, 255, 255, 1.0)';
 const BLACK = 'rgba(0, 0, 0, 1.0)';
 const GRAY = 'rgba(0, 0, 0, 0.6)';
 const LIGHTGRAY = 'rgba(0, 0, 0, 0.05)';
+
 const LINEWIDTH = 2;
 const THINLINEWIDTH = 1;
 
