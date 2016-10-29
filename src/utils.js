@@ -78,7 +78,7 @@ function buildNarativeNav(nav) {
 }
 
 function buildNarative(scene) {
-  return `<h2>${scene.title}</h2> ${scene.narative}`;
+  return `${scene.narative}`;
 }
 
 function play(scene, f) {

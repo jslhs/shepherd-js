@@ -21,18 +21,27 @@ function main() {
 
   const story = {
     single: {
-      title: 'Random Node',
       scene: scene.getSceneUniformSingle,
-      narative: `<p>A is a single node that moves between random
-      positions.</p>`,
+      narative: `<h2>Introduction</h2>
+
+      <p>The following is a tiny guide to shepherding random numbers. It does
+      not deal with statistics or probablility, it is simply a few useful
+      tricks I've learnt for manipulating random numbers so that they behave in
+      a pleasing manner.</p>
+
+      <h2>Random Node</h2>
+
+      <p>We start with something very simple: a single node that moves between
+      random positions.</p>`,
       nav: {
         next: 'multi'
       }
     },
     multi: {
-      title: 'Multiple',
       scene: scene.getSceneUniformMulti,
-      narative: `<p>It is always useful to see what happens when we introduce
+      narative: `<h2>Multiple</h2>
+
+      <p>It is always useful to see what happens when we introduce
       more things. Here are multiple nodes that move in the same way as
       before.</p>`,
       nav: {
@@ -41,11 +50,13 @@ function main() {
       }
     },
     'multi-local': {
-      title: 'Memory',
       scene: scene.getSceneUniformLocal,
-      narative: `<p>The nodes still move at random. However, now they move
-      relative to their previous position&mdash;as if they have developed a
-      simple kind of memory.</p>
+      narative: `<h2>Memory</h2>
+
+      <p>The nodes still move at random. However, now they move relative to
+      their previous position&mdash;as if they have developed a simple kind of
+      memory.</p>
+
       <p>When ever a node reaches the edge of the canvas we stop it's motion.
       Until it should be inclined to start moving in the opposite
       direction.</p>`,
@@ -55,12 +66,14 @@ function main() {
       }
     },
     'multi-velocity': {
-      title: 'Velocity',
       scene: scene.getSceneUniformVel,
-      narative: `<p>Instead of simply letting the nodes move randomly relative
-      to their previous positions we now introduce a velcity. For each step the
-      nodes will move slightly according to their velocity. All nodes start
-      with a velocity of zero.</p>
+      narative: `<h2>Velocity</h2>
+
+      <p>Instead of simply letting the nodes move randomly relative to their
+      previous positions we now introduce a velcity. For each step the nodes
+      will move slightly according to their velocity. All nodes start with a
+      velocity of zero.</p>
+
       <p>To make things a little more interesting we manipulate the velocity in
       the same way that we did nodes in the previous example. That means that
       the velocities will change gradually. Velocities can be either
@@ -71,20 +84,23 @@ function main() {
       }
     },
     'multi-varying-velocity': {
-      title: 'Sums of Velocities',
       scene: scene.getSceneXVel,
-      narative: `<p>Nodes have a varying velocity, before. However, now the
-      velocity of a given node is the sum of all the velocities of the nodes on
-      it's left.<p>`,
+      narative: `<h2>Sums of Velocities<h2>
+
+      <p>Nodes have a varying velocity, before. However, now the velocity of a
+      given node is the sum of all the velocities of the nodes on it's
+      left.<p>`,
       nav: {
         prev: 'multi-velocity',
         next: 'multi-varying-velocity-high'
       }
     },
     'multi-varying-velocity-high': {
-      title: 'More Nodes. Again',
       scene: scene.getSceneXVelHigh,
-      narative: `<p>It is time to intrduce even more nodes.</p>
+      narative: `<h2>More Nodes. Again</h2>
+
+      <p>It is time to intrduce even more nodes.</p>
+
       <p>Now it is a little easier to see the pattern.</p>`,
       nav: {
         prev: 'multi-varying-velocity',
@@ -92,9 +108,10 @@ function main() {
       }
     },
     'multi-varying-velocity-expose': {
-      title: 'Through Time',
       scene: scene.getSceneXVelExpose,
-      narative: 'Expose.',
+      narative: `<h2>Through Time</h2>
+
+      <p>Expose.</p>`,
       nav: {
         prev: 'multi-varying-velocity-high'
       }
