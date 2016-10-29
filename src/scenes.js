@@ -134,10 +134,8 @@ export function getSceneUniformLocal(ctx, width, height) {
   const noise = 1;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
-  let itt = 0;
 
   function scene() {
-    itt += 1;
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -164,10 +162,8 @@ export function getSceneUniformVel(ctx, width, height) {
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
-  let itt = 0;
 
   function scene() {
-    itt += 1;
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -205,10 +201,8 @@ export function getSceneXVel(ctx, width, height) {
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
-  let itt = 0;
 
   function scene() {
-    itt += 1;
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -286,9 +280,13 @@ export function getSceneXVelHigh(ctx, width, height) {
 }
 
 export function getSceneXVelExpose(ctx, width, height) {
-  ctx.strokeStyle = GRAY;
-  ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
+
+  ctx.fillStyle = WHITE;
+  clear(ctx, width, height);
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = GRAY;
 
   const boundary = getBoundary(width, height);
 
@@ -299,17 +297,9 @@ export function getSceneXVelExpose(ctx, width, height) {
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let velocity = getNs(num, 0);
-  let itt = 0;
+
 
   function scene() {
-    itt += 1;
-
-    if (itt===1) {
-      ctx.fillStyle = WHITE;
-      clear(ctx, width, height);
-      ctx.fillStyle = GRAY;
-    }
-
     velocity = permute(velocity, noise);
     let s = 0;
     path = path.map(({ x, y }, i) => {

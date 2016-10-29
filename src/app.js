@@ -23,8 +23,8 @@ function main() {
     single: {
       title: 'Random Node',
       scene: scene.getSceneUniformSingle,
-      narative: `<p>Here is a single Node that oscillate randomly around a
-      center</p>`,
+      narative: `<p>A is a single node that moves between random
+      positions.</p>`,
       nav: {
         next: 'multi'
       }
@@ -32,17 +32,23 @@ function main() {
     multi: {
       title: 'Multiple',
       scene: scene.getSceneUniformMulti,
-      narative: '<p>Several nodes that oscillate in the same way.</p>',
+      narative: `<p>It is always useful to see what happens when we introduce
+      more things. Here are multiple nodes that move in the same way as
+      before.</p>`,
       nav: {
         prev: 'single',
         next: 'multi-local'
       }
     },
     'multi-local': {
-      title: 'Local Oscilation',
+      title: 'Memory',
       scene: scene.getSceneUniformLocal,
-      narative: `<p>Nodes oscillate randomly around their previous
-      position.</p>`,
+      narative: `<p>The nodes still move at random. However, now they move
+      relative to their previous position&mdash;as if they have developed a
+      simple kind of memory.</p>
+      <p>When ever a node reaches the edge of the canvas we stop it's motion.
+      Until it should be inclined to start moving in the opposite
+      direction.</p>`,
       nav: {
         prev: 'multi',
         next: 'multi-velocity'
@@ -57,7 +63,7 @@ function main() {
       with a velocity of zero.</p>
       <p>To make things a little more interesting we manipulate the velocity in
       the same way that we did nodes in the previous example. That means that
-      the velocities will osciallate gradually.  Velocities can be either
+      the velocities will change gradually. Velocities can be either
       positive or negative.</p>`,
       nav: {
         prev: 'multi-local',
@@ -65,31 +71,32 @@ function main() {
       }
     },
     'multi-varying-velocity': {
-      title: '',
+      title: 'Sums of Velocities',
       scene: scene.getSceneXVel,
       narative: `<p>Nodes have a varying velocity, before. However, now the
       velocity of a given node is the sum of all the velocities of the nodes on
-      it' left .<p>`,
+      it's left.<p>`,
       nav: {
         prev: 'multi-velocity',
         next: 'multi-varying-velocity-high'
       }
     },
     'multi-varying-velocity-high': {
-      title: '',
+      title: 'More Nodes. Again',
       scene: scene.getSceneXVelHigh,
-      narative: '<p>Now we add more nodes.</p>',
+      narative: `<p>It is time to intrduce even more nodes.</p>
+      <p>Now it is a little easier to see the pattern.</p>`,
       nav: {
         prev: 'multi-varying-velocity',
         next: 'multi-varying-velocity-expose'
       }
     },
     'multi-varying-velocity-expose': {
-      title: '',
+      title: 'Through Time',
       scene: scene.getSceneXVelExpose,
       narative: 'Expose.',
       nav: {
-        prev: '<p>multi-varying-velocity-high</p>'
+        prev: 'multi-varying-velocity-high'
       }
     }
   };
