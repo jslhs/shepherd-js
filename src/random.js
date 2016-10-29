@@ -78,3 +78,16 @@ export function permute(arr, noise) {
   });
   return newArr;
 }
+
+export function limit(v, ma, mi) {
+  return Math.max(Math.min(v, ma), mi);
+}
+
+//export function permute(arr, noise) {
+//  const newArr = arr.map((v) => {
+//    const rnd = (1.0-2*Math.random())*noise;
+//    return v + rnd;
+//  });
+//  return newArr;
+//}
+

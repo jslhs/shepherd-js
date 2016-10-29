@@ -1,6 +1,6 @@
 /*eslint-env browser*/
 
-import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs } from './random';
+import { getLinspaceYLinspaceX, getRndYLinspaceX, permuteY, permute, getNs, limit} from './random';
 import { printInfo, printWarn } from './utils';
 import { drawPath, drawPathDots, clear} from './draw';
 
@@ -11,12 +11,13 @@ const HPI = Math.PI * 0.5;
 const WHITE = 'rgba(255, 255, 255, 1.0)';
 const BLACK = 'rgba(0, 0, 0, 1.0)';
 const GRAY = 'rgba(0, 0, 0, 0.6)';
-const LINEWIDTH = 3;
+const LINEWIDTH = 2;
+const THINLINEWIDTH = 1;
 
 
 export function getScene1(ctx, width, height) {
   printInfo('making scene 1');
-  const narative = 'Nodes oscillate randomly around the middle. | <a href="#2">Next</a>';
+  const str = 'Nodes oscillate randomly around the middle'; const narative = `${str} | <a class="next" href="#2">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -72,7 +73,8 @@ export function getScene1(ctx, width, height) {
 
 export function getScene2(ctx, width, height) {
   printInfo('making scene 2');
-  const narative = '<a href="#1">Back</a> | Nodes oscillate randomly around their previous position. | <a href="#3">Next</a>';
+  const str = 'Nodes oscillate randomly around their previous position.';
+  const narative = `<a class="prev" href="#1">Back</a> | ${str} | <a class="next" href="#3">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -102,6 +104,7 @@ export function getScene2(ctx, width, height) {
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
 
+    // TODO: limit
     path = permuteY(path, noise);
     drawPathDots(ctx, path, dotSize);
   }
@@ -114,7 +117,8 @@ export function getScene2(ctx, width, height) {
 
 export function getScene3(ctx, width, height) {
   printInfo('making scene 3');
-  const narative = '<a href="#2">Back</a> | Nodes have a velocity. The velocity changes randomly with small increments | <a href="#4">Next</a>';
+  const str = 'Nodes have a velocity. The velocity changes randomly with small increments.';
+  const narative = `<a class="prev" href="#2">Back</a> | ${str} | <a class="next" href="#4">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -150,10 +154,172 @@ export function getScene3(ctx, width, height) {
     velocity = permute(velocity, noise);
     path = path.map(({ x, y }, i) => ({
       x,
-      y: Math.max(Math.min(y + velocity[i], yMax), yMin)
+      y: limit(y + velocity[i], yMax, yMin)
     }));
 
     drawPathDots(ctx, path, dotSize);
+  }
+
+  return {
+    scene,
+    narative
+  };
+}
+
+export function getScene4(ctx, width, height) {
+  printInfo('making scene 4');
+  const str = 'The velocity changes more when a node is further to the right.';
+  const narative = `<a class="prev" href="#3">Back</a> ${str} <a class="next" href="#5">Next</a>`;
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = WHITE;
+  ctx.lineWidth = LINEWIDTH;
+
+  const edgeX = width*5/100;
+  const edgeY = height*20/100;
+
+  const xMin = edgeX;
+  const xMax = width - edgeX;
+  const yMin = edgeY;
+  const yMax = height - edgeY;
+  const yMid = (yMax+yMin)*0.5;
+
+  const num = Math.floor(width / 10);
+  const dotSize = 3;
+
+  const noise = 0.1;
+
+  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let velocity = getNs(num, 0);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    printInfo('scene2');
+    ctx.fillStyle = WHITE;
+    clear(ctx, width, height);
+    ctx.fillStyle = GRAY;
+
+    velocity = permute(velocity, noise);
+    let s = 0;
+    path = path.map(({ x, y }, i) => {
+      s += velocity[i];
+      return {
+        x,
+        y: limit(y+s, yMax, yMin)
+      };
+    });
+
+    drawPathDots(ctx, path, dotSize);
+  }
+
+  return {
+    scene,
+    narative
+  };
+}
+
+export function getScene5(ctx, width, height) {
+  printInfo('making scene 4');
+  const str = 'Now we add more nodes.';
+  const narative = `<a class="prev" href="#4">Back</a> ${str} <a class="next" href="#6">Next</a>`;
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = WHITE;
+  ctx.lineWidth = THINLINEWIDTH;
+
+  const edgeX = width*5/100;
+  const edgeY = height*20/100;
+
+  const xMin = edgeX;
+  const xMax = width - edgeX;
+  const yMin = edgeY;
+  const yMax = height - edgeY;
+  const yMid = (yMax+yMin)*0.5;
+
+  const num = Math.floor(width / 4);
+  const dotSize = 3;
+
+  const noise = 0.1;
+
+  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let velocity = getNs(num, 0);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    printInfo('scene2');
+    ctx.fillStyle = WHITE;
+    clear(ctx, width, height);
+    ctx.fillStyle = GRAY;
+
+    velocity = permute(velocity, noise);
+    let s = 0;
+    path = path.map(({ x, y }, i) => {
+      s += velocity[i];
+      return {
+        x,
+        y: limit(y+s, yMax, yMin)
+      };
+    });
+
+    drawPath(ctx, path, dotSize);
+  }
+
+  return {
+    scene,
+    narative
+  };
+}
+
+export function getScene6(ctx, width, height) {
+  printInfo('making scene 4');
+  const str = 'Expose.';
+  const narative = `<a class="prev" href="#5">Back</a> ${str}`;
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = WHITE;
+  ctx.lineWidth = THINLINEWIDTH;
+
+  const edgeX = width*5/100;
+  const edgeY = height*20/100;
+
+  const xMin = edgeX;
+  const xMax = width - edgeX;
+  const yMin = edgeY;
+  const yMax = height - edgeY;
+  const yMid = (yMax+yMin)*0.5;
+
+  const num = Math.floor(width / 4);
+  const dotSize = 3;
+
+  const noise = 0.1;
+
+  let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
+  let velocity = getNs(num, 0);
+  let itt = 0;
+
+  function scene() {
+    itt += 1;
+    printInfo('scene2');
+
+    if (itt===1) {
+      ctx.fillStyle = WHITE;
+      clear(ctx, width, height);
+      ctx.fillStyle = GRAY;
+    }
+
+    velocity = permute(velocity, noise);
+    let s = 0;
+    path = path.map(({ x, y }, i) => {
+      s += velocity[i];
+      return {
+        x,
+        y: limit(y+s, yMax, yMin)
+      };
+    });
+
+    drawPath(ctx, path, dotSize);
   }
 
   return {
