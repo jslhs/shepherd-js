@@ -11,13 +11,14 @@ const HPI = Math.PI * 0.5;
 const WHITE = 'rgba(255, 255, 255, 1.0)';
 const BLACK = 'rgba(0, 0, 0, 1.0)';
 const GRAY = 'rgba(0, 0, 0, 0.6)';
+const LIGHTGRAY = 'rgba(0, 0, 0, 0.1)';
 const LINEWIDTH = 2;
 const THINLINEWIDTH = 1;
 
 
 export function getScene1(ctx, width, height) {
   printInfo('making scene 1');
-  const str = 'Nodes oscillate randomly around the middle'; const narative = `${str} | <a class="next" href="#2">Next</a>`;
+  const str = 'Nodes oscillate randomly around the middle'; const narative = `${str} <a class="next" href="#2">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = GRAY;
@@ -43,7 +44,6 @@ export function getScene1(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene1');
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -74,7 +74,7 @@ export function getScene1(ctx, width, height) {
 export function getScene2(ctx, width, height) {
   printInfo('making scene 2');
   const str = 'Nodes oscillate randomly around their previous position.';
-  const narative = `<a class="prev" href="#1">Back</a> | ${str} | <a class="next" href="#3">Next</a>`;
+  const narative = `<a class="prev" href="#1">Back</a> ${str} <a class="next" href="#3">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -99,7 +99,6 @@ export function getScene2(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene2');
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -118,7 +117,7 @@ export function getScene2(ctx, width, height) {
 export function getScene3(ctx, width, height) {
   printInfo('making scene 3');
   const str = 'Nodes have a velocity. The velocity changes randomly with small increments.';
-  const narative = `<a class="prev" href="#2">Back</a> | ${str} | <a class="next" href="#4">Next</a>`;
+  const narative = `<a class="prev" href="#2">Back</a> ${str} <a class="next" href="#4">Next</a>`;
 
   ctx.strokeStyle = GRAY;
   ctx.fillStyle = WHITE;
@@ -144,12 +143,9 @@ export function getScene3(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene2');
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
-
-    //printInfo(velocity)
 
     velocity = permute(velocity, noise);
     path = path.map(({ x, y }, i) => ({
@@ -195,7 +191,6 @@ export function getScene4(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene2');
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -220,11 +215,11 @@ export function getScene4(ctx, width, height) {
 }
 
 export function getScene5(ctx, width, height) {
-  printInfo('making scene 4');
+  printInfo('making scene 5');
   const str = 'Now we add more nodes.';
   const narative = `<a class="prev" href="#4">Back</a> ${str} <a class="next" href="#6">Next</a>`;
 
-  ctx.strokeStyle = GRAY;
+  ctx.strokeStyle = LINEWIDTH;
   ctx.fillStyle = WHITE;
   ctx.lineWidth = THINLINEWIDTH;
 
@@ -240,7 +235,7 @@ export function getScene5(ctx, width, height) {
   const num = Math.floor(width / 4);
   const dotSize = 3;
 
-  const noise = 0.1;
+  const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
   let velocity = getNs(num, 0);
@@ -248,7 +243,6 @@ export function getScene5(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene2');
     ctx.fillStyle = WHITE;
     clear(ctx, width, height);
     ctx.fillStyle = GRAY;
@@ -273,7 +267,7 @@ export function getScene5(ctx, width, height) {
 }
 
 export function getScene6(ctx, width, height) {
-  printInfo('making scene 4');
+  printInfo('making scene 6');
   const str = 'Expose.';
   const narative = `<a class="prev" href="#5">Back</a> ${str}`;
 
@@ -293,7 +287,7 @@ export function getScene6(ctx, width, height) {
   const num = Math.floor(width / 4);
   const dotSize = 3;
 
-  const noise = 0.1;
+  const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, xMin, xMax, yMid, yMid);
   let velocity = getNs(num, 0);
@@ -301,7 +295,6 @@ export function getScene6(ctx, width, height) {
 
   function scene() {
     itt += 1;
-    printInfo('scene2');
 
     if (itt===1) {
       ctx.fillStyle = WHITE;
