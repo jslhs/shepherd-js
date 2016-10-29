@@ -1,7 +1,7 @@
 {
-  "author": "",
+  "author": "@inconvergent",
   "dependencies": {},
-  "description": "",
+  "description": "An uncomprehensive guide to shepherding random numbers.",
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
@@ -18,12 +18,12 @@
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
-  "homepage": "",
+  "homepage": "http://inconvergent.net",
   "license": "MIT",
-  "name": "",
+  "name": "shepherding-random-numbers",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/inconvergent/shepherd-js"
   },
   "scripts": {
     "dev": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --host 0.0.0.0",
