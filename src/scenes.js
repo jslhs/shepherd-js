@@ -148,8 +148,8 @@ export function getSceneUniformVel(ctx, width, height) {
 
   const boundary = getBoundary(width, height);
 
-  const num = Math.floor(width / 10);
-  const dotSize = 3;
+  const num = Math.floor(width / 20);
+  const dotSize = 4;
   const noise = 0.1;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
@@ -186,8 +186,8 @@ export function getSceneXVel(ctx, width, height) {
 
   const boundary = getBoundary(width, height);
 
-  const num = Math.floor(width / 10);
-  const dotSize = 3;
+  const num = Math.floor(width / 20);
+  const dotSize = 4;
   const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);

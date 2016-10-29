@@ -93,7 +93,7 @@ function main() {
     },
     'multi-varying-velocity': {
       scene: scene.getSceneXVel,
-      narative: `<h2>Sums of Velocities<h2>
+      narative: `<h2>Sums of Velocities</h2>
 
       <p>Nodes have a varying velocity, before. However, now the velocity of a
       given node is the sum of all the velocities of the nodes on it's
