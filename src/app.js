@@ -1,6 +1,7 @@
 /*eslint-env browser*/
 
 
+import './sass/main.scss';
 import { printInfo, printWarn, updateCanvas, play } from './utils';
 import * as scene from './scenes';
 

@@ -1,0 +1,30 @@
+$heading-font: 'Open Sans Condensed', 'Droid Sans', sans-serif;
+$serif-font: 'Droid Serif', serif;
+$sans-font: 'Droid Sans', sans-serif;
+
+$page-width: 650px;
+$page-width-percent: 90%;
+
+$font-size: 16px;
+$line-height: 25px;
+
+$side-pad: 3%;
+
+$head-color: #555;
+$font-color: #555;
+$light-color: #ccc;
+$accent-color: #0aa;
+$opacity: 0.7;
+
+
+.heading-font {
+  font-family: $heading-font;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
+}
+
+.global-hover {
+  text-decoration: underline;
+}
+

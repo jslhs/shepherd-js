@@ -1,0 +1,98 @@
+
+@import 'global';
+
+.global-hover {
+  text-decoration: underline;
+}
+
+.heading-font {
+  font-family: $heading-font;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: .5rem;
+  line-height: 1.5rem;
+  color: $head-color;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  margin-top: 100px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-top: 50px;
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
+  line-height: 1rem;
+  margin-top: 1rem;
+}
+
+p {
+  margin: 0 0 1.5rem 0;
+}
+
+ul {
+  -webkit-margin-before: 1rem;
+  -webkit-margin-after: 1rem;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: block;
+  list-style-type: disc;
+}
+
+dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: block;
+  -webkit-padding-start: 40px;
+}
+dt {
+  @extend .heading-font;
+  float: left;
+  clear: left;
+  text-align: left;
+  font-weight: bold;
+  &:after{
+    content: ":";
+  }
+}
+dd {
+  margin: .5rem 0 .5rem 0;
+  clear: left;
+}
+
+dl.named-links {
+  dt {
+    width: 280px;
+  }
+  dd {
+    @media (min-width:801px) {
+      clear: none;
+    }
+  }
+}
+
+ul.link-list {
+  @extend .heading-font;
+  list-style: none;
+  padding-left:0;
+}
