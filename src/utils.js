@@ -63,6 +63,7 @@ function animloop(f) {
 }
 
 export function play(s) {
+  printInfo(s)
   const narativeDiv = document.getElementById(NARATIVE);
   narativeDiv.innerHTML = s.narative;
 
