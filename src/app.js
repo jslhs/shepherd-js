@@ -2,15 +2,14 @@
 
 
 import './sass/main.scss';
-import { printInfo, printWarn, updateCanvas, animloop, getCanvasSize } from './utils';
+import { printInfo, updateAndStartCanvas, getCanvasSize } from './utils';
 import * as scene from './scenes';
 
 
-window.onresize = () => {
-  printInfo('resize');
-  main();
-};
-
+//window.onresize = () => {
+//  printInfo('resize');
+//  main();
+//};
 
 function main() {
   printInfo('running main. yess');
@@ -27,11 +26,9 @@ function main() {
     history: scene.getSceneXVelExpose
   };
 
-  Object.keys(story).map((sceneName) => {
+  Object.keys(story).forEach((sceneName) => {
     printInfo(`updating: ${sceneName}`);
-    const ctx = updateCanvas(cs.width, cs.height, sceneName);
-    const f = story[sceneName](ctx, cs.width, cs.height);
-    animloop(f);
+    updateAndStartCanvas(cs.width, cs.height, sceneName, story[sceneName]);
   });
 }
 

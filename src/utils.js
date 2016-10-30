@@ -47,29 +47,85 @@ export function printWarn(...args) {
   console.warn(s);
 }
 
-export function updateCanvas(width, height, name) {
+export function updateAndStartCanvas(width, height, name, getScene) {
   const canvasId = `canvas-${name}`;
   const containerId = `container-${name}`;
 
   const canvasStr = `<canvas width="${width}" height="${height}"
   class="drawing" id="${canvasId}"></canvas>`;
 
-  document.getElementById(containerId).innerHTML = canvasStr;
+  const container = document.getElementById(containerId);
+
+  container.innerHTML = canvasStr;
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext('2d');
-  return ctx;
+
+  const scene = getScene(ctx, width, height);
+
+  if (!window.drawings) {
+    window.drawings = {};
+  }
+
+  if (window.addEventListener) {
+    printInfo('addEventListener');
+    window.addEventListener('scroll', () => {
+      const inView = isInViewport(container);
+      const animId = window.drawings[canvasId];
+      if (inView) {
+        if (!animId) {
+          printInfo('starting: ', canvasId);
+          animloop(scene, canvasId);
+        }
+      } else if (animId) {
+        printInfo('stopping: ', canvasId);
+        cancelAnimationFrame(animId);
+        window.drawings[canvasId] = undefined;
+      }
+    }, false);
+  }
+  // TODO: do we need this?
+  //else if (container.attachEvent) {
+  //  printInfo('attachEvent');
+  //  window.attachEvent('onscroll', onScrollEventHandler);
+  //}
+
+  //return ctx;
 }
 
-export function animloop(f) {
-  requestAnimationFrame(() => animloop(f));
+export function animloop(f, canvasId) {
+  window.drawings[canvasId] = requestAnimationFrame(() => animloop(f, canvasId));
   f();
 }
 
 export function getCanvasSize() {
   const width = Math.max(window.innerWidth, 320);
-  const height = Math.max(window.innerHeight*0.6, 500);
+  const height = Math.max(window.innerHeight*0.6, 400);
   return {
     width, height
   };
 }
 
+//https://gist.github.com/jjmu15/8646226
+export function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  const html = document.documentElement;
+  const bottom = rect.bottom;
+  const top = rect.top;
+  const mid = (bottom+top)*0.5;
+
+  return (
+    mid > 0 && mid<(window.innerHeight || html.clientHeight)
+
+    //(
+    //  rect.bottom > 0 &&
+    //  rect.bottom <= (window.innerHeight || html.clientHeight)
+    //)
+    //|| (
+    //  rect.top > 0 &&
+    //  rect.top <= (window.innerHeight || html.clientHeight)
+    //)
+
+    //rect.left >= 0 &&
+    //rect.right <= (window.innerWidth || html.clientWidth)
+  );
+}
