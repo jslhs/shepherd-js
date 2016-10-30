@@ -1,3 +1,3 @@
 # Shepherding Random Numbers
 
-An uncomprehensive guide to shepherding random numbers.
+An incomprehensive guide to shepherding random numbers.
