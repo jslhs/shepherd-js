@@ -39,7 +39,6 @@ a {
   }
 }
 
-
 #container{
   width: 100%;
   height: 100%;
@@ -53,20 +52,6 @@ a {
   margin: 0;
 }
 
-#narative-nav, #narative{
-  float: left;
-  position: relative;
-  width: 100%;
-  margin: 1.5rem 0 0 0;
-}
-
-#drawing{
-  position: relative;
-  float: left;
-  width: 100%;
-  height: 100%;
-}
-
 #footer {
   clear: both;
   margin: 0 auto;
@@ -77,6 +62,7 @@ a {
   padding-bottom: 30px;
   color: $very-light-color;
   text-align: center;
+  font-size: 0.9rem;
 }
 
 .site-title {
@@ -130,34 +116,6 @@ a {
   }
   h1, h2, h3, h4, h5, h6{
     @extend .heading-font;
-  }
-}
-
-.paginator {
-  @extend .heading-font;
-  font-size: 1.4rem;
-  line-height: 2.0rem;
-  display: block;
-  padding-top: 10px;
-  @media (min-width:801px) {
-    font-size: 2.0rem;
-    line-height: 2.5rem;
-  }
-}
-.next {
-  @extend .paginator;
-  float: right;
-  text-align: right;
-  &:after{
-    content: ">";
-  }
-}
-.prev {
-  @extend .paginator;
-  float: left;
-  text-align: left;
-  &:before{
-    content: "<";
   }
 }
 
