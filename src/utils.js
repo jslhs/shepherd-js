@@ -61,35 +61,28 @@ export function updateAndStartCanvas(width, height, name, getScene) {
   const ctx = canvas.getContext('2d');
   const scene = getScene(ctx, width, height);
 
-  if (!window.drawings) {
-    window.drawings = {};
-  }
-
-  if (window.addEventListener) {
-    printInfo('addEventListener');
-    window.addEventListener('scroll', () => {
-      printInfo('scroll listener: ', canvasId);
-      const inView = isInViewport(container);
-      const animId = window.drawings[canvasId];
-      if (inView) {
-        if (!animId) {
-          printInfo('starting: ', canvasId);
-          animloop(scene, canvasId);
-        }
-      } else if (animId) {
-        printInfo('stopping: ', canvasId);
-        cancelAnimationFrame(animId);
-        window.drawings[canvasId] = undefined;
+  function handler() {
+    const inView = isInViewport(container);
+    const animId = window.drawings[canvasId];
+    if (inView) {
+      if (!animId) {
+        printInfo('starting: ', canvasId);
+        animloop(scene, canvasId);
       }
-    }, false);
+    } else if (animId) {
+      printInfo('stopping: ', canvasId);
+      cancelAnimationFrame(animId);
+      window.drawings[canvasId] = undefined;
+    }
   }
-  // TODO: do we need this?
-  //else if (container.attachEvent) {
-  //  printInfo('attachEvent');
-  //  window.attachEvent('onscroll', onScrollEventHandler);
-  //}
 
-  //return ctx;
+  window.addEventListener('scroll', handler, false);
+
+  //function clickHandler() {
+  //  canvas.removeEventListener('scroll', handler, false);
+  //  //updateAndStartCanvas(width, height, name, getScene(ctx, width, height));
+  //}
+  //canvas.addEventListener('click', clickHandler, false);
 }
 
 export function animloop(f, canvasId) {
@@ -112,20 +105,5 @@ export function isInViewport(element) {
   const bottom = rect.bottom;
   const top = rect.top;
   const mid = (bottom+top)*0.5;
-
-  return (
-    mid > 0 && mid<(window.innerHeight || html.clientHeight)
-
-    //(
-    //  rect.bottom > 0 &&
-    //  rect.bottom <= (window.innerHeight || html.clientHeight)
-    //)
-    //|| (
-    //  rect.top > 0 &&
-    //  rect.top <= (window.innerHeight || html.clientHeight)
-    //)
-
-    //rect.left >= 0 &&
-    //rect.right <= (window.innerWidth || html.clientWidth)
-  );
+  return mid > 0 && mid<(window.innerHeight || html.clientHeight);
 }

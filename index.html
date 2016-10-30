@@ -14,7 +14,7 @@
 <meta name="twitter:creator" content="@inconvergent">
 <meta name="twitter:url" content="http://inconvergent.net">
 <meta name="twitter:title" content="inconvergent &middot; Shepherding Random Numbers">
-<meta name="twitter:description" content="An uncomprehensive guide to shepherding random numbers.">
+<meta name="twitter:description" content="An incomprehensive guide to shepherding random numbers.">
 <meta name="twitter:image1" content="http://inconvergent.net/img/ello-mesh5.jpg">
 <meta name="twitter:image0" content="http://inconvergent.net/img/ello-line.jpg">
 <meta name="twitter:image2" content="http://inconvergent.net/img/creatures.jpg">
@@ -30,8 +30,8 @@
 <meta property="og:image" content="http://inconvergent.net/img/fracture_a.jpg" />
 <meta property="og:type" content="website" />
 
-<meta property="og:description" content="An uncomprehensive guide to shepherding random numbers." />
-<meta name="description" content="An uncomprehensive guide to shepherding random numbers." />
+<meta property="og:description" content="An incomprehensive guide to shepherding random numbers." />
+<meta name="description" content="An incomprehensive guide to shepherding random numbers." />
 
 <meta name="google-site-verification" content="KymIUCYkzGHgYeDgr3pIZyz63dwmhDhNkNj9Yd1IIfM" />
 
@@ -59,6 +59,8 @@ canvas" />
   <!-- hesitate to get in touch at inconvergent@gmail.com -->
   <!-- ##################################################################### -->
 
+  <!--googleoff: all-->
+
   <div id="container">
     <div id="content">
 
@@ -69,14 +71,16 @@ canvas" />
         </div>
       </nav>
 
+      <!--googleon: all-->
       <div class="text">
         <h1>Shepherding Random Numbers</h1>
       </div>
 
       <div class="text">
         <div id="introduction" class="show">
+      <!--googleoff: all-->
 
-          <p><strong>This text is experimental/incomplete.</strong></p>
+          <p><em>This text is a work in progress.</em></p>
 
           <h2>Sections</h2>
 
@@ -92,14 +96,19 @@ canvas" />
 
           <h2>Introduction</h2>
 
-          <p>The following is a tiny guide to shepherding random numbers. It
-            does not really deal with statistics or probability, it is
-            simply a collection of a few useful tricks I've learnt for
-            manipulating random numbers, so that they behave in a pleasing
-            manner.</p>
+          <!--googleon: all-->
 
-          <p>This text relies on animations (Canvas). They should work on most
-            devices, but please let me know if you experience any issues.</p>
+          <p>The following is a tiny guide to shepherding random numbers.
+            Originally I used this as a part of a presentation, but it seemed
+            like it would work well as a little text as well. It does not
+            really deal with statistics or probability, it is simply a
+            collection of a few useful tricks I've learnt for manipulating
+            random numbers. Usually I use the following techniques as a part of
+            a larger work.</p>
+
+          <p>This text relies on Javascript animations (Canvas). They should
+            work on most devices, but please let me know if you experience any
+            issues.</p>
 
           <h2>Random Node</h2>
 
@@ -115,10 +124,9 @@ canvas" />
 
           <h2>Multiple</h2>
 
-          <p>It is always useful to see what happens when we introduce more
-            things.  Here are multiple nodes that move in the same way as
-            before. Note that all these nodes behave completely unrelated to
-            one another</p>
+          <p>It is always useful to see what it looks like when we introduce
+            more things. Here are multiple independent nodes that move in the
+            same way as before.</p>
         </div>
       </div>
       <div class="canvas-container" id="container-multiple"></div>
@@ -132,17 +140,17 @@ canvas" />
             to their previous position&mdash;as if they have developed a
             simple kind of memory.</p>
 
-          <p>Suddenly it looks as if all the nodes are very nervous about
+          <p>This also makes it look as if all the nodes are very nervous about
             something.</p>
 
           <p>When we look at this it can sometimes seem as if there is a
-            pattern emerging from the behaviour. But if you feel like you can
-            see such a pattern it is entirely coincidental since the nodes
-            are completely unaware of each other</p>
+            pattern emerging from the behaviour. However, if you feel like you
+            can see such a pattern it is entirely coincidental, since the nodes
+            are completely unaware of each other.</p>
 
-          <p>Whenever a node reaches the edge of the canvas we stop it's
-            motion.  Until it should be inclined to start moving in the
-            opposite direction.</p>
+          <p>Whenever a node reaches the edge of the canvas, we stop it's
+            motion. The node will remain at the edge until it should be
+            inclined to start moving in the opposite direction.</p>
 
         </div>
       </div>
@@ -153,15 +161,17 @@ canvas" />
 
           <h2>Velocity</h2>
 
-          <p>Instead of simply letting the nodes move randomly relative to
-            their previous positions we now introduce a velocity. For each
-            step the nodes will move slightly according to their velocity.
-            All nodes start with a velocity of zero.</p>
+          <p>We now introduce the idea of velocity. Instead of moving relative
+            to their previous position, nodes will now move accoring to their
+            current velocity.</p>
 
           <p>To make things a little more interesting we manipulate the
-            velocity in the same way that we did nodes in the previous
-            example. That means that the velocities will change gradually.
-            Velocities can be either positive or negative.</p>
+            velocity in the same way that we did node position in the previous
+            example. That means that the velocities gradually will change.
+            Velocities can be either positive or negative, as you can see
+            indicated by the lines in the animation.</p>
+
+          <p>In this example all nodes start with a velocity of zero.</p>
 
         </div>
       </div>
@@ -172,9 +182,10 @@ canvas" />
 
           <h2>Sums of Velocities</h2>
 
-          <p>Nodes have a varying velocity, before. However, now the velocity
-            of a given node is the sum of all the velocities of the nodes on
-            it's left.</p>
+          <p>Until now all the nodes have been completely independent of each
+            other. In the animation below, however, the velocity of a given
+            node is the sum of all the velocities of the nodes on it's left
+            hand side.</p>
 
         </div>
       </div>
@@ -185,9 +196,9 @@ canvas" />
 
           <h2>More Nodes. Again</h2>
 
-          <p>It is time to introduce even more nodes. Frequently adding more
-            things can help with seeing thing differently. It also helps
-          with seeing the behaviour (or pattern) as a whole.</p>
+          <p>It is time to introduce even more nodes. Adding more things can
+            help you see thing differently. In this case it makes it a little
+            easier to see the total behaviour of the system of nodes.</p>
 
         </div>
       </div>
@@ -199,11 +210,12 @@ canvas" />
           <h2>History</h2>
 
           <p>For me the goal is frequently to make a static result. That is,
-            something that will make a nice image. While these animations are
+            something that will make a good image. While these animations are
             nice and informative, a snapshot of one of them is not really that
             interesting. A way of getting different results is by drawing
-            behaviour over time. Showing the history of some behaviour can also
-            be a nice alternative way of understanding what is happening.</p>
+            behaviour over time. Showing the history of a behaviour like we do
+            below can also be a nice alternative way of understanding what is
+            happening.</p>
 
         </div>
       </div>
@@ -223,6 +235,8 @@ canvas" />
 
         </div>
       </div>
+
+      <!--googleoff: all-->
 
       <div class="text">
         <div id="footer">

@@ -82,7 +82,7 @@ export function getSceneUniformMulti(ctx, width, height) {
 
   const num = Math.floor(width / 20);
   const dotSize = 4;
-  const frames = 60;
+  const frames = 120;
 
   let path1 = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
   let path2 = getRndYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMin, boundary.yMax);

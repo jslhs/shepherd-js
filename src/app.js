@@ -16,6 +16,10 @@ function main() {
 
   const cs = getCanvasSize();
 
+  if (!window.drawings) {
+    window.drawings = {};
+  }
+
   const story = {
     introduction: scene.getSceneUniformSingle,
     multiple: scene.getSceneUniformMulti,
