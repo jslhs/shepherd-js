@@ -42,3 +42,25 @@ h4, h5, h6 {
 p {
   margin: 0 0 1.5rem 0;
 }
+
+ol, ul {
+  -webkit-margin-before: 1rem;
+  -webkit-margin-after: 1rem;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+ol{
+  @extend .heading-font;
+  list-style-type: decimal-leading-zero;
+}
+
+ul.link-list {
+  @extend .heading-font;
+  list-style: none;
+  padding-left:0;
+}

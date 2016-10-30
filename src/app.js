@@ -22,12 +22,24 @@ function main() {
   const story = {
     single: {
       scene: scene.getSceneUniformSingle,
-      narative: `<h2>Introduction</h2>
+      narative: `<h2>Sections</h2>
+
+      <ol>
+        <li><a href="#single">Introduction</a></li>
+        <li><a href="#multi">Multiple</a></li>
+        <li><a href="#multi-memory">Memory</a></li>
+        <li><a href="#multi-velocity">Velocity</a></li>
+        <li><a href="#multi-sum-velocity">Sums of Velocities</a></li>
+        <li><a href="#multi-sum-velocity-high">More Nodes. Again</a></li>
+        <li><a href="#multi-sum-velocity-expose">History</a></li>
+      </ol>
+
+      <h2>Introduction</h2>
 
       <p>The following is a tiny guide to shepherding random numbers. It does
-      not really deal with statistics or probablility, it is simply a few
-      useful tricks I've learnt for manipulating random numbers, so that they
-      behave in a pleasing manner.</p>
+      not really deal with statistics or probablility, it is simply a
+      collection of a few useful tricks I've learnt for manipulating random
+      numbers, so that they behave in a pleasing manner.</p>
 
       <h2>Random Node</h2>
 
@@ -46,10 +58,10 @@ function main() {
       all these nodes behave completely unrelated to one another</p>`,
       nav: {
         prev: 'single',
-        next: 'multi-local'
+        next: 'multi-memory'
       }
     },
-    'multi-local': {
+    'multi-memory': {
       scene: scene.getSceneUniformLocal,
       narative: `<h2>Memory</h2>
 
@@ -88,10 +100,10 @@ function main() {
       positive or negative.</p>`,
       nav: {
         prev: 'multi-local',
-        next: 'multi-varying-velocity'
+        next: 'multi-sum-velocity'
       }
     },
-    'multi-varying-velocity': {
+    'multi-sum-velocity': {
       scene: scene.getSceneXVel,
       narative: `<h2>Sums of Velocities</h2>
 
@@ -100,10 +112,10 @@ function main() {
       left.<p>`,
       nav: {
         prev: 'multi-velocity',
-        next: 'multi-varying-velocity-high'
+        next: 'multi-sum-velocity-high'
       }
     },
-    'multi-varying-velocity-high': {
+    'multi-sum-velocity-high': {
       scene: scene.getSceneXVelHigh,
       narative: `<h2>More Nodes. Again</h2>
 
@@ -111,17 +123,17 @@ function main() {
 
       <p>Now it is a little easier to see the pattern.</p>`,
       nav: {
-        prev: 'multi-varying-velocity',
-        next: 'multi-varying-velocity-expose'
+        prev: 'multi-sum-velocity',
+        next: 'multi-sum-velocity-history'
       }
     },
-    'multi-varying-velocity-expose': {
+    'multi-sum-velocity-history': {
       scene: scene.getSceneXVelExpose,
-      narative: `<h2>Through Time</h2>
+      narative: `<h2>History</h2>
 
       <p>Expose.</p>`,
       nav: {
-        prev: 'multi-varying-velocity-high'
+        prev: 'multi-sum-velocity-high'
       }
     }
   };

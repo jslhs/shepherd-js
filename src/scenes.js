@@ -276,12 +276,12 @@ export function getSceneXVelExpose(ctx, width, height) {
   clear(ctx, width, height);
 
   ctx.strokeStyle = GRAY;
-  ctx.fillStyle = GRAY;
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
 
   const boundary = getBoundary(width, height);
 
-  const num = Math.floor(width / 7);
-  const dotSize = 3;
+  const num = Math.floor(width);
+  const dotSize = 1.0;
   const noise = 0.01;
 
   let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
@@ -295,10 +295,9 @@ export function getSceneXVelExpose(ctx, width, height) {
       return {
         x,
         y: limit(y+s, boundary.yMax, boundary.yMin)
-      };
-    });
+      }; });
 
-    drawPath(ctx, path, dotSize);
+    drawDots(ctx, path, dotSize, true);
   }
   return scene;
 }
