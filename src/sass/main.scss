@@ -98,6 +98,16 @@ a {
   }
 }
 
+.canvas-container{
+  width: 100%;
+  text-align: center;
+}
+canvas{
+  //margin: 0 auto;
+  display: inline-block;
+  position: relative;
+}
+
 .text {
   margin: 0 auto;
   padding: 5px;

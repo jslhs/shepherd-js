@@ -59,7 +59,6 @@ export function updateAndStartCanvas(width, height, name, getScene) {
   container.innerHTML = canvasStr;
   const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext('2d');
-
   const scene = getScene(ctx, width, height);
 
   if (!window.drawings) {
@@ -69,6 +68,7 @@ export function updateAndStartCanvas(width, height, name, getScene) {
   if (window.addEventListener) {
     printInfo('addEventListener');
     window.addEventListener('scroll', () => {
+      printInfo('scroll listener: ', canvasId);
       const inView = isInViewport(container);
       const animId = window.drawings[canvasId];
       if (inView) {
