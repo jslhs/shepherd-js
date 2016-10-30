@@ -47,7 +47,8 @@ export function printWarn(...args) {
   console.warn(s);
 }
 
-export function updateAndStartCanvas(width, height, name, getScene) {
+export function updateAndStartCanvas(width, height, name, getScene, doStart) {
+  const start = doStart || false;
   const canvasId = `canvas-${name}`;
   const containerId = `container-${name}`;
 
@@ -61,7 +62,11 @@ export function updateAndStartCanvas(width, height, name, getScene) {
   const ctx = canvas.getContext('2d');
   const scene = getScene(ctx, width, height);
 
-  function handler() {
+  if (doStart) {
+    animloop(scene, canvasId);
+  }
+
+  function scrollHandler() {
     const inView = isInViewport(container);
     const animId = window.drawings[canvasId];
     if (inView) {
@@ -76,13 +81,21 @@ export function updateAndStartCanvas(width, height, name, getScene) {
     }
   }
 
-  window.addEventListener('scroll', handler, false);
+  window.addEventListener('scroll', scrollHandler, false);
 
-  //function clickHandler() {
-  //  canvas.removeEventListener('scroll', handler, false);
-  //  //updateAndStartCanvas(width, height, name, getScene(ctx, width, height));
-  //}
-  //canvas.addEventListener('click', clickHandler, false);
+  // TODO: improve this mess.
+
+  function clickHandler() {
+    window.removeEventListener('scroll', scrollHandler, false);
+    canvas.removeEventListener('click', clickHandler, false);
+    if (window.drawings[canvasId]) {
+      printInfo('stopping: ', canvasId);
+      cancelAnimationFrame(window.drawings[canvasId]);
+      window.drawings[canvasId] = undefined;
+    }
+    updateAndStartCanvas(width, height, name, getScene, true);
+  }
+  canvas.addEventListener('click', clickHandler, false);
 }
 
 export function animloop(f, canvasId) {
@@ -93,9 +106,7 @@ export function animloop(f, canvasId) {
 export function getCanvasSize() {
   const width = Math.max(window.innerWidth, 320);
   const height = Math.max(window.innerHeight*0.6, 400);
-  return {
-    width, height
-  };
+  return { width, height };
 }
 
 //https://gist.github.com/jjmu15/8646226
