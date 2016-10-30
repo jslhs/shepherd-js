@@ -54,19 +54,145 @@ code, programming, animation, inconvergent, computational" />
   <div id="container">
     <div id="content">
 
-      <div class="text">
-        <nav>
+      <nav>
+        <div class="text">
           <div class="site-title"><a
               href='http://inconvergent.net'>inconvergent</a></div>
-        </nav>
-        <h1>Shepherding Random Numbers</h1>
+        </div>
+      </nav>
 
-        <div id="narative"></div>
-      </div>
-      <div id="box"></div>
       <div class="text">
-        <div id="narative-nav"></div>
+        <h1>Shepherding Random Numbers</h1>
       </div>
+
+      <div class="text">
+        <div id="introduction" class="show">
+
+          <h2>Sections</h2>
+
+          <ol>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#multiple">Multiple</a></li>
+            <li><a href="#memory">Memory</a></li>
+            <li><a href="#velocity">Velocity</a></li>
+            <li><a href="#sums-of-velocities">Sums of Velocities</a></li>
+            <li><a href="#more-nodes-again">More Nodes. Again</a></li>
+            <li><a href="#history">History</a></li>
+          </ol>
+
+          <h2>Introduction</h2>
+
+          <p>The following is a tiny guide to shepherding random numbers. It
+            does not really deal with statistics or probablility, it is
+            simply a collection of a few useful tricks I've learnt for
+            manipulating random numbers, so that they behave in a pleasing
+            manner.</p>
+
+          <h2>Random Node</h2>
+
+          <p>We start with something very simple: a single node that moves
+            between random positions.</p>
+
+        </div>
+      </div>
+      <div id="container-introduction"></div>
+
+      <div class="text">
+        <div id="multiple" class="hide">
+
+          <h2>Multiple</h2>
+
+          <p>It is always useful to see what happens when we introduce more
+            things.  Here are multiple nodes that move in the same way as
+            before. Note that all these nodes behave completely unrelated to
+            one another</p>
+        </div>
+      </div>
+      <div id="container-multiple"></div>
+
+      <div class="text">
+        <div id="memory" class="hide">
+
+          <h2>Memory</h2>
+
+          <p>The nodes still move at random. However, now they move relative
+            to their previous position&mdash;as if they have developed a
+            simple kind of memory.</p>
+
+          <p>Sudenly it looks as if all the nodes are very nervous about
+            something.</p>
+
+          <p>When we look at this it can sometimes seem as if there is a
+            pattern emerging from the behaviour. But if you feel like you can
+            see such a pattern it is entirely coincidental since the nodes
+            are completely unaware of each other</p>
+
+          <p>Whenever a node reaches the edge of the canvas we stop it's
+            motion.  Until it should be inclined to start moving in the
+            opposite direction.</p>
+
+        </div>
+      </div>
+      <div id="container-memory"></div>
+
+      <div class="text">
+        <div id="velocity" class="hide">
+
+          <h2>Velocity</h2>
+
+          <p>Instead of simply letting the nodes move randomly relative to
+            their previous positions we now introduce a velcity. For each
+            step the nodes will move slightly according to their velocity.
+            All nodes start with a velocity of zero.</p>
+
+          <p>To make things a little more interesting we manipulate the
+            velocity in the same way that we did nodes in the previous
+            example. That means that the velocities will change gradually.
+            Velocities can be either positive or negative.</p>
+
+        </div>
+      </div>
+      <div id="container-velocity"></div>
+
+      <div class="text">
+        <div id="sums-of-velocities" class="hide">
+
+          <h2>Sums of Velocities</h2>
+
+          <p>Nodes have a varying velocity, before. However, now the velocity
+            of a given node is the sum of all the velocities of the nodes on
+            it's left.</p>
+
+
+        </div>
+      </div>
+      <div id="container-sums-of-velocities"></div>
+
+      <div class="text">
+        <div id="more-nodes-again" class="hide">
+
+          <h2>More Nodes. Again</h2>
+
+          <p>It is time to intrduce even more nodes.</p>
+
+          <p>Now it is a little easier to see the pattern.</p>
+
+
+        </div>
+      </div>
+      <div id="container-more-nodes-again"></div>
+
+      <div class="text">
+        <div id="history" class="hide">
+
+          <h2>History</h2>
+
+          <p>Expose.</p>
+
+        </div>
+      </div>
+      <div id="container-history"></div>
+
     </div>
   </div>
   <div id="footer">

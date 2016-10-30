@@ -1,8 +1,5 @@
 /*eslint-env browser*/
 
-const NARATIVE = 'narative';
-const NARATIVENAV = 'narative-nav';
-
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 // requestAnimationFrame polyfill by Erik Möller
@@ -50,64 +47,22 @@ export function printWarn(...args) {
   console.warn(s);
 }
 
-export function updateCanvas(width, height) {
-  const canvasStr = `<canvas width="${width}" height="${height}" id="drawing"></canvas>`;
-  document.getElementById('box').innerHTML = canvasStr;
-  const canvas = document.getElementById('drawing');
+export function updateCanvas(width, height, name) {
+  const canvasId = `canvas-${name}`;
+  const containerId = `container-${name}`;
+
+  const canvasStr = `<canvas width="${width}" height="${height}"
+  class="drawing" id="${canvasId}"></canvas>`;
+
+  document.getElementById(containerId).innerHTML = canvasStr;
+  const canvas = document.getElementById(canvasId);
   const ctx = canvas.getContext('2d');
   return ctx;
 }
 
-function animloop(f) {
-  window.sceneAnim = requestAnimationFrame(() => animloop(f));
+export function animloop(f) {
+  requestAnimationFrame(() => animloop(f));
   f();
-}
-
-function buildNarativeNav(nav) {
-  let prev = '';
-  let next = '';
-  if (nav.prev) {
-    prev = `<a onclick="ga('send', 'event', 'link', 'click',
-    'prev');" class="paginator prev" href="#${nav.prev}">Previous</a>`;
-  }
-  if (nav.next) {
-    next = `<a  onclick="ga('send', 'event', 'link', 'click',
-    'next');" class="paginator next" href="#${nav.next}">Next</a>`;
-  }
-  return `${prev} ${next}`;
-}
-
-function buildNarative(scene) {
-  return `${scene.narative}`;
-}
-
-function play(scene, f) {
-  const narativeDiv = document.getElementById(NARATIVE);
-  const narativeNavDiv = document.getElementById(NARATIVENAV);
-
-  narativeDiv.innerHTML = buildNarative(scene);
-  narativeNavDiv.innerHTML = buildNarativeNav(scene.nav);
-
-  if (window.sceneAnim) {
-    // i regret nothing!
-    cancelAnimationFrame(window.sceneAnim);
-    window.sceneAnim = undefined;
-  }
-  animloop(f);
-}
-
-export function doNav(story, ctx, width, height) {
-  const hash = window.location.hash.slice(1);
-  if (!hash) {
-    window.location.hash = '#single';
-  } else if (story[hash]) {
-    const s = story[hash];
-    const f = s.scene(ctx, width, height);
-    play(s, f);
-  } else {
-    printWarn('No scene?');
-    window.location.hash = '#single';
-  }
 }
 
 export function getCanvasSize() {
