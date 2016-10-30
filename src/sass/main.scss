@@ -101,11 +101,10 @@ a {
 .canvas-container{
   width: 100%;
   text-align: center;
-}
-canvas{
-  //margin: 0 auto;
-  display: inline-block;
-  position: relative;
+  canvas{
+    display: inline-block;
+    position: relative;
+  }
 }
 
 .text {
