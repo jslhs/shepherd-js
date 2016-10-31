@@ -104,7 +104,7 @@ export function animloop(f, canvasId) {
 }
 
 export function getCanvasSize() {
-  const width = Math.max(window.innerWidth, 320);
+  const width = Math.max(window.innerWidth-60, 320);
   const height = Math.max(window.innerHeight*0.6, 400);
   return { width, height };
 }

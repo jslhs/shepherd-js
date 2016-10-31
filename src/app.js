@@ -31,6 +31,7 @@ function main() {
     'different-dimensions': scene.getSceneXYVelExpose,
     'new-beginnings': scene.getSceneCircVelExpose,
     'more-random': scene.getSceneRndCircVelExpose
+    //connected: scene.getSceneRndCon
   };
 
   Object.keys(story).forEach((sceneName) => {

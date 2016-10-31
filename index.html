@@ -64,248 +64,277 @@ canvas" />
   <div id="container">
     <div id="content">
 
-      <nav>
-        <div class="text">
-          <div class="site-title"><a
-              href='http://inconvergent.net'>inconvergent</a></div>
-        </div>
-      </nav>
+      <header>
+        <nav>
+          <div class="text">
+            <div class="site-title"><a
+                href='http://inconvergent.net'>inconvergent</a></div>
+          </div>
+        </nav>
+      </header>
 
       <!--googleon: all-->
-      <div class="text">
-        <h1>Shepherding Random Numbers</h1>
-      </div>
+      <main>
+        <article itemscope itemtype="http://schema.org/Article">
+          <meta itemprop="headline" content="Shepherding Random Numbers">
+          <meta itemprop="datePublished" content="2016-10-29" />
+          <meta itemprop="dateModified" content="2016-10-31" />
+          <div itemscope itemprop="author" itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Anders Hoff"/>
+            <meta itemprop="sameAs" content="http://inconvergent.net"/>
+          </div>
+          <div itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="Anders Hoff"/>
+            <meta itemprop="sameAs" content="http://inconvergent.net"/>
+          </div>
 
-      <div class="text">
-        <div id="introduction" class="show">
-      <!--googleoff: all-->
+          <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="http://inconvergent.net/shepherding-random-numbers/img/img.jpg">
+            <meta itemprop="width" content="800">
+            <meta itemprop="height" content="800">
+          </div>
 
-          <p><em>This text is a work in progress.</em></p>
+          <div class="text">
+            <h1>Shepherding Random Numbers</h1>
+          </div>
 
-          <h2>Sections</h2>
+          <div class="text">
+            <div id="introduction" class="show">
+              <!--googleoff: all-->
 
-          <ol>
-            <li><a href="#introduction">Introduction</a></li>
-            <li><a href="#multiple">Multiple</a></li>
-            <li><a href="#memory">Memory</a></li>
-            <li><a href="#velocity">Velocity</a></li>
-            <li><a href="#sums-of-velocities">Sums of Velocities</a></li>
-            <li><a href="#more-nodes-again">More Nodes. Again</a></li>
-            <li><a href="#history">History</a></li>
-            <li><a href="#different-dimensions">Different Dimensions</a></li>
-            <li><a href="#new-beginnings">New Beginnings</a></li>
-            <li><a href="#more-random">More Random</a></li>
-            <li><a href="#conclusion">Conclusion</a></li>
-          </ol>
+              <h2>Sections</h2>
 
-          <h2>Introduction</h2>
+              <ol>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#multiple">Multiple</a></li>
+                <li><a href="#memory">Memory</a></li>
+                <li><a href="#velocity">Velocity</a></li>
+                <li><a href="#sums-of-velocities">Sums of Velocities</a></li>
+                <li><a href="#more-nodes-again">More Nodes. Again</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="#different-dimensions">Different
+                    Dimensions</a></li>
+                <li><a href="#new-beginnings">New Beginnings</a></li>
+                <li><a href="#more-random">More Random</a></li>
+                <li><a href="#connected">Connected</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+              </ol>
 
-          <!--googleon: all-->
+              <h2>Introduction</h2>
 
-          <p>The following is a tiny guide to shepherding random numbers.
-            Originally I used this as a part of a presentation, but it seemed
-            like it would work well as a little text as well. It does not
-            really deal with statistics or probability, it is simply a
-            collection of a few useful tricks I've learnt for manipulating
-            random numbers. Usually I use the following techniques as a part of
-            a larger work.</p>
+              <!--googleon: all-->
 
-          <p>This text relies on Javascript animations (Canvas). They should
-            work on most devices, but please let me know if you experience any
-            issues.</p>
+              <p>The following is a tiny guide to shepherding random numbers.
+                Originally I used this as a part of a presentation, but it
+                seemed like it would work well as a little text as well. It
+                does not really deal with statistics or probability, it is
+                simply a collection of a few useful tricks I've learnt for
+                manipulating random numbers. Usually I use the following
+                techniques as a part of a larger work.</p>
 
-          <p><em>You can click or tap all animations to restart them.</em></p>
+              <p>This text relies on Javascript animations (Canvas). They
+                should work on most devices, but please let me know if you
+                experience any issues.</p>
 
-          <h2>Random Node</h2>
+              <p><em>You can click or tap all animations to restart
+                  them.</em></p>
 
-          <p>We start with something very simple: a single node that moves
-            between random positions.</p>
+              <h2>Random Node</h2>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-introduction"></div>
+              <p>We start with something very simple: a single node that moves
+                between random positions.</p>
 
-      <div class="text">
-        <div id="multiple" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-introduction"></div>
 
-          <h2>Multiple</h2>
+          <div class="text">
+            <div id="multiple" class="hide">
 
-          <p>It is always useful to see what it looks like when we introduce
-            more things. Here are multiple independent nodes that move in the
-            same way as before.</p>
-        </div>
-      </div>
-      <div class="canvas-container" id="container-multiple"></div>
+              <h2>Multiple</h2>
 
-      <div class="text">
-        <div id="memory" class="hide">
+              <p>It is always useful to see what it looks like when we
+                introduce more things. Here are multiple independent nodes that
+                move in the same way as before.</p>
+            </div>
+          </div>
+          <div class="canvas-container" id="container-multiple"></div>
 
-          <h2>Memory</h2>
+          <div class="text">
+            <div id="memory" class="hide">
 
-          <p>The nodes still move at random. However, now they move relative to
-            their previous position, that is: they move slightly up or down
-            from where they are. As opposed to previously when they would move
-            at random to a completely new position. One could say that they
-            have developed a simple kind of memory.</p>
+              <h2>Memory</h2>
 
-          <p>This also makes it look as if all the nodes are very nervous about
-            something.</p>
+              <p>The nodes still move at random. However, now they move
+                relative to their previous position, that is: they move
+                slightly up or down from where they are. As opposed to
+                previously when they would move at random to a completely new
+                position. One could say that they have developed a simple kind
+                of memory.</p>
 
-          <p>When we look at this it can sometimes seem as if there is a
-            pattern emerging from the behaviour. However, if you feel like you
-            can see such a pattern it is entirely coincidental, since the nodes
-            are completely unaware of each other.</p>
+              <p>This also makes it look as if all the nodes are very nervous
+                about something.</p>
 
-          <p>Whenever a node reaches the edge of the canvas, we stop it's
-            motion. The node will remain at the edge until it should be
-            inclined to start moving in the opposite direction.</p>
+              <p>When we look at this it can sometimes seem as if there is a
+                pattern emerging from the behaviour. However, if you feel like
+                you can see such a pattern it is entirely coincidental, since
+                the nodes are completely unaware of each other.</p>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-memory"></div>
+              <p>Whenever a node reaches the edge of the canvas, we stop it's
+                motion. The node will remain at the edge until it should be
+                inclined to start moving in the opposite direction.</p>
 
-      <div class="text">
-        <div id="velocity" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-memory"></div>
 
-          <h2>Velocity</h2>
+          <div class="text">
+            <div id="velocity" class="hide">
 
-          <p>We now introduce the idea of velocity. Instead of moving relative
-            to their previous position, nodes will now move according to their
-            current velocity.</p>
+              <h2>Velocity</h2>
 
-          <p>To make things a little more interesting we manipulate the
-            velocity in the same way that we did node position in the previous
-            example. That means that the velocities gradually will change.
-            Velocities can be either positive or negative, as you can see
-            indicated by the lines in the animation.</p>
+              <p>We now introduce the idea of velocity. Instead of moving
+                relative to their previous position, nodes will now move
+                according to their current velocity.</p>
 
-          <p>In this example all nodes start with a velocity of zero.</p>
+              <p>To make things a little more interesting we manipulate the
+                velocity in the same way that we did node position in the
+                previous example. That means that the velocities gradually will
+                change.  Velocities can be either positive or negative, as you
+                can see indicated by the lines in the animation.</p>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-velocity"></div>
+              <p>In this example all nodes start with a velocity of zero.</p>
 
-      <div class="text">
-        <div id="sums-of-velocities" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-velocity"></div>
 
-          <h2>Sums of Velocities</h2>
+          <div class="text">
+            <div id="sums-of-velocities" class="hide">
 
-          <p>Until now all the nodes have been completely independent of each
-            other. So here is a one possible way to change that. Each node now
-            has two associated velocities. One is the <em>regular
-              velocity</em>. This behaves exactly like in the previous example.
-            The second is the <em>special velocity</em>. The <em>special
-              velocity</em> is re-calculated for each frame, and it is the sum
-            of all the current <em>regular velocities</em> of the nodes on it's
-            left hand side.</p>
+              <h2>Sums of Velocities</h2>
 
-          <p>If this seems a little arbitrary to you, it is probably because it
-            is. There is no obvious reason to do this, other than the fact that
-            it behaves rather pleasing.</p>
+              <p>Until now all the nodes have been completely independent of
+                each other. So here is one possible way to change that. Each
+                node now has two associated velocities. One is the <em>regular
+                  velocity</em>. This behaves exactly like in the previous
+                example.  The second is the <em>special velocity</em>. The
+                <em>special velocity</em> is re-calculated for each frame, and
+                it is the sum of all the current <em>regular velocities</em> of
+                the nodes on it's left hand side.</p>
 
-          <p>The lines in the animation below indicate the <em>special
-              velocity</em>.</p>
-        </div>
-      </div>
-      <div class="canvas-container" id="container-sums-of-velocities"></div>
+              <p>If this seems a little arbitrary to you, it is probably
+                because it is. There is no obvious reason to do this, other
+                than the fact that it behaves rather pleasing.</p>
 
-      <div class="text">
-        <div id="more-nodes-again" class="hide">
+              <p>The lines in the animation below indicate the <em>special
+                  velocity</em>.</p>
+            </div>
+          </div>
+          <div class="canvas-container" id="container-sums-of-velocities"></div>
 
-          <h2>More Nodes. Again</h2>
+          <div class="text">
+            <div id="more-nodes-again" class="hide">
 
-          <p>It is time to introduce even more nodes. Adding more things can
-            help you see thing differently. In this case it makes it a little
-            easier to see the total behaviour of the system of nodes.</p>
+              <h2>More Nodes. Again</h2>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-more-nodes-again"></div>
+              <p>It is time to introduce even more nodes. Adding more things
+                can help you see thing differently. In this case it makes it a
+                little easier to see the total behaviour of the system of
+                nodes.</p>
 
-      <div class="text">
-        <div id="history" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-more-nodes-again"></div>
 
-          <h2>History</h2>
+          <div class="text">
+            <div id="history" class="hide">
 
-          <p>For me the goal is frequently to make a static result. That is,
-            something that will make a good image. While these animations are
-            nice and informative, a snapshot of one of them is not really that
-            interesting. A way of getting different results is by drawing
-            behaviour over time. Showing the history of a behaviour like we do
-            below can also be a nice alternative way of understanding what is
-            happening.</p>
+              <h2>History</h2>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-history"></div>
+              <p>For me the goal is frequently to make a static result. That
+                is, something that will make a good image. While these
+                animations are nice and informative, a snapshot of one of them
+                is not really that interesting. A way of getting different
+                results is by drawing behaviour over time. Showing the history
+                of a behaviour like we do below can also be a nice alternative
+                way of understanding what is happening.</p>
 
-      <div class="text">
-        <div id="different-dimensions" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-history"></div>
 
-          <h2>Different Dimensions</h2>
+          <div class="text">
+            <div id="different-dimensions" class="hide">
 
-          <p>So far we have looked at behaviour along a single axis, or
-            dimension. Lets apply the exact same behaviour as before in two
-            dimensions.</p>
+              <h2>Different Dimensions</h2>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-different-dimensions"></div>
+              <p>So far we have looked at behaviour along a single axis, or
+                dimension. Lets apply the exact same behaviour as before in two
+                dimensions.</p>
 
-      <div class="text">
-        <div id="new-beginnings" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-different-dimensions"></div>
 
-          <h2>New Beginnings</h2>
+          <div class="text">
+            <div id="new-beginnings" class="hide">
 
-          <p>Things will look quite different if we change the initial
-            distribution of nodes. Below we see what happens if we wrap the
-            nodes along the circumference of a circle.</p>
+              <h2>New Beginnings</h2>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-new-beginnings"></div>
+              <p>Things will look quite different if we change the initial
+                distribution of nodes. Below we see what happens if we wrap the
+                nodes along the circumference of a circle.</p>
 
-      <div class="text">
-        <div id="more-random" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-new-beginnings"></div>
 
-          <h2>More Random</h2>
+          <div class="text">
+            <div id="more-random" class="hide">
 
-          <p>It is always a good idea to experiment with adding more
-            randomness. One example is to  distribute the nodes at random along
-            the circumference. The important thing to keep in mind in this case
-            is that since the behaviour is exactly the same as before, there is
-            still the same relation between the nodes' velocities. It is just
-            their initial position that has changed.</p>
+              <h2>More Random</h2>
 
-            <p>You can probably think of a few other things to try randomizing
-              as well.</p>
+              <p>It is always a good idea to experiment with adding more
+                randomness. One example is to  distribute the nodes at random
+                along the circumference. The important thing to keep in mind in
+                this case is that since the behaviour is exactly the same as
+                before, there is still the same relation between the nodes'
+                velocities. It is just their initial position that has
+                changed.</p>
 
-        </div>
-      </div>
-      <div class="canvas-container" id="container-more-random"></div>
+              <p>You can probably think of a few other things to try
+                randomizing as well.</p>
 
-      <div class="text">
-        <div id="conclusion" class="hide">
+            </div>
+          </div>
+          <div class="canvas-container" id="container-more-random"></div>
 
-          <h2>Conclusion</h2>
+          <div class="text">
+            <div id="conclusion" class="hide">
 
-          <p>These are just a few of the things you can do with random numbers.
-            Let me know if you enjoyed this, because then I'll try to add more
-            sections!</p>
+              <h2>Conclusion</h2>
 
-          <p>If you made it this far you may also be interested in my essay <a
-              href="/generative/">On Generative Algorithms</a>.</p>
+              <p>These are just a few of the things you can do with random
+                numbers.  Let me know if you enjoyed this, because then I'll
+                try to add more sections!</p>
 
-        </div>
-      </div>
+              <p>If you made it this far you may also be interested in my essay
+                <a href="/generative/">On Generative Algorithms</a>.</p>
 
-      <!--googleoff: all-->
+            </div>
+          </div>
 
-      <div class="text">
-        <div id="footer">
-          <small>+++MELON MELON MELON+++</small>
-        </div>
-      </div>
+          <!--googleoff: all-->
+
+          <div class="text">
+            <div id="footer">
+              <small>+++MELON MELON MELON+++</small>
+            </div>
+          </div>
+
+        </article>
+      </main>
 
     </div>
 

@@ -1,22 +1,9 @@
 
-
 import { printInfo, printWarn } from './utils';
 
 const TWOPI = 2.0*Math.PI;
 
-//function getRndTup(n, a, b) {
-//  const res = [];
-//  for (let i = 0; i < n; i++) {
-//    res.push({
-//      x: Math.random() * a,
-//      y: Math.random() * b
-//    });
-//  }
-//  return res;
-//}
-
-export function getNs(n, v) {
-  const res = [];
+export function getNs(n, v) { const res = [];
   for (let i = 0; i < n; i++) {
     res.push(v);
   }
@@ -87,6 +74,16 @@ export function getRndCirc(n, ix, iy, rad) {
   return res;
 }
 
+export function getRndRect(n, left, right, bottom, top) {
+  const res = [];
+  for (let i = 0; i < n; i++) {
+    const x = left + Math.random()*(right-left);
+    const y = bottom + Math.random()*(top-bottom);
+    res.push({ x, y });
+  }
+  return res;
+}
+
 export function permuteY(path, noise) {
   const newPath = path.map(({ x, y }) => {
     const rnd = (1.0-2*Math.random())*noise;
@@ -109,12 +106,4 @@ export function permute(arr, noise) {
 export function limit(v, ma, mi) {
   return Math.max(Math.min(v, ma), mi);
 }
-
-//export function permute(arr, noise) {
-//  const newArr = arr.map((v) => {
-//    const rnd = (1.0-2*Math.random())*noise;
-//    return v + rnd;
-//  });
-//  return newArr;
-//}
 
