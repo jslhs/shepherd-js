@@ -1,5 +1,8 @@
 
+
 import { printInfo, printWarn } from './utils';
+
+const TWOPI = 2.0*Math.PI;
 
 //function getRndTup(n, a, b) {
 //  const res = [];
@@ -56,6 +59,30 @@ export function getLinspaceYLinspaceX(n, xMin, xMax, yMin, yMax) {
     res.push({ x, y });
     x += sX;
     y += sY;
+  }
+  return res;
+}
+
+export function getCirc(n, ix, iy, rad) {
+  const res = [];
+  const d = TWOPI/n;
+  let a = 0;
+  for (let i = 0; i < n; i++) {
+    const x = ix + Math.cos(a)*rad;
+    const y = iy + Math.sin(a)*rad;
+    res.push({ x, y });
+    a += d;
+  }
+  return res;
+}
+
+export function getRndCirc(n, ix, iy, rad) {
+  const res = [];
+  for (let i = 0; i < n; i++) {
+    const a = Math.random()*TWOPI;
+    const x = ix + Math.cos(a)*rad;
+    const y = iy + Math.sin(a)*rad;
+    res.push({ x, y });
   }
   return res;
 }

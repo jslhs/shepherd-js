@@ -27,7 +27,10 @@ function main() {
     velocity: scene.getSceneUniformVel,
     'sums-of-velocities': scene.getSceneXVel,
     'more-nodes-again': scene.getSceneXVelHigh,
-    history: scene.getSceneXVelExpose
+    history: scene.getSceneXVelExpose,
+    'different-dimensions': scene.getSceneXYVelExpose,
+    'new-beginnings': scene.getSceneCircVelExpose,
+    'more-random': scene.getSceneRndCircVelExpose
   };
 
   Object.keys(story).forEach((sceneName) => {

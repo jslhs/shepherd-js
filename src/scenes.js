@@ -1,6 +1,6 @@
 /*eslint-env browser*/
 
-import { getLinspaceYLinspaceX, getRndYLinspaceX,
+import { getLinspaceYLinspaceX, getRndYLinspaceX, getCirc, getRndCirc,
   permuteY, permute, getNs, limit } from './array';
 import { printInfo, printWarn } from './utils';
 import { drawDots, drawPath, drawPathDots, clear } from './draw';
@@ -22,6 +22,10 @@ function getBoundary(width, height) {
   const edgeTopY = height*0.2;
   const edgeBottomY = height*0.2;
 
+  const xl = 0;
+  const xr = width;
+  const yb = height;
+  const yt = 0;
   const xMin = edgeX;
   const xMax = width - edgeX;
   const yMin = edgeTopY;
@@ -29,7 +33,7 @@ function getBoundary(width, height) {
   const yMid = (yMax+yMin)*0.5;
   const xMid = (xMax+xMin)*0.5;
   return {
-    xMin, xMax, yMin, yMax, yMid, xMid
+    xMin, xMax, yMin, yMax, yMid, xMid, xl, xr, yb, yt
   };
 }
 
@@ -294,7 +298,122 @@ export function getSceneXVelExpose(ctx, width, height) {
       s += velocity[i];
       return {
         x,
-        y: limit(y+s, boundary.yMax, boundary.yMin)
+        y: limit(y+s, boundary.yb, boundary.yt)
+      }; });
+
+    drawDots(ctx, path, dotSize, true);
+  }
+  return scene;
+}
+
+export function getSceneXYVelExpose(ctx, width, height) {
+  ctx.lineWidth = THINLINEWIDTH;
+
+  ctx.fillStyle = WHITE;
+  clear(ctx, width, height);
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
+
+  const boundary = getBoundary(width, height);
+
+  const num = Math.floor(width);
+  const dotSize = 1.0;
+  const noise = 0.01;
+
+  let path = getLinspaceYLinspaceX(num, boundary.xMin, boundary.xMax, boundary.yMid, boundary.yMid);
+  let velx = getNs(num, 0);
+  let vely = getNs(num, 0);
+
+  function scene() {
+    velx = permute(velx, noise);
+    vely = permute(vely, noise);
+    let sx = 0;
+    let sy = 0;
+    path = path.map(({ x, y }, i) => {
+      sx+= velx[i];
+      sy+= vely[i];
+      return {
+        x: limit(x+sx, boundary.xr, boundary.xl),
+        y: limit(y+sy, boundary.yb, boundary.yt)
+      }; });
+
+    drawDots(ctx, path, dotSize, true);
+  }
+  return scene;
+}
+
+export function getSceneCircVelExpose(ctx, width, height) {
+  ctx.lineWidth = THINLINEWIDTH;
+
+  ctx.fillStyle = WHITE;
+  clear(ctx, width, height);
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
+
+  const boundary = getBoundary(width, height);
+
+  const num = Math.floor(width);
+  const dotSize = 1.0;
+  const noise = 0.01;
+
+  const rad = Math.min(width*0.2, height*0.2);
+
+  let path = getCirc(num, boundary.xMid, boundary.yMid, rad);
+  let velx = getNs(num, 0);
+  let vely = getNs(num, 0);
+
+  function scene() {
+    velx = permute(velx, noise);
+    vely = permute(vely, noise);
+    let sx = 0;
+    let sy = 0;
+    path = path.map(({ x, y }, i) => {
+      sx+= velx[i];
+      sy+= vely[i];
+      return {
+        x: limit(x+sx, boundary.xr, boundary.xl),
+        y: limit(y+sy, boundary.yb, boundary.yt)
+      }; });
+
+    drawDots(ctx, path, dotSize, true);
+  }
+  return scene;
+}
+
+export function getSceneRndCircVelExpose(ctx, width, height) {
+  ctx.lineWidth = THINLINEWIDTH;
+
+  ctx.fillStyle = WHITE;
+  clear(ctx, width, height);
+
+  ctx.strokeStyle = GRAY;
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
+
+  const boundary = getBoundary(width, height);
+
+  const num = Math.floor(width);
+  const dotSize = 1.0;
+  const noise = 0.01;
+
+  const rad = Math.min(width*0.2, height*0.2);
+
+  let path = getRndCirc(num, boundary.xMid, boundary.yMid, rad);
+  let velx = getNs(num, 0);
+  let vely = getNs(num, 0);
+
+  function scene() {
+    velx = permute(velx, noise);
+    vely = permute(vely, noise);
+    let sx = 0;
+    let sy = 0;
+    path = path.map(({ x, y }, i) => {
+      sx+= velx[i];
+      sy+= vely[i];
+      return {
+        x: limit(x+sx, boundary.xr, boundary.xl),
+        y: limit(y+sy, boundary.yb, boundary.yt)
       }; });
 
     drawDots(ctx, path, dotSize, true);
