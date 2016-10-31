@@ -191,10 +191,20 @@ canvas" />
           <h2>Sums of Velocities</h2>
 
           <p>Until now all the nodes have been completely independent of each
-            other. In the animation below, however, the velocity of a given
-            node is the sum of all the velocities of the nodes on it's left
-            hand side.</p>
+            other. So here is a one possible way to change that. Each node now
+            has two associated velocities. One is the <em>regular
+              velocity</em>. This behaves exactly like in the previous example.
+            The second is the <em>special velocity</em>. The <em>special
+              velocity</em> is re-calculated for each frame, and it is the sum
+            of all the current <em>regular velocities</em> of the nodes on it's
+            left hand side.</p>
 
+          <p>If this seems a little arbitrary to you, it is probably because it
+            is. There is no obvious reason to do this, other than the fact that
+            it behaves rather pleasing.</p>
+
+          <p>The lines in the animation below indicate the <em>special
+              velocity</em>.</p>
         </div>
       </div>
       <div class="canvas-container" id="container-sums-of-velocities"></div>
